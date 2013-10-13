@@ -26,7 +26,7 @@ import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.account.ProfileService;
 
 /**
- * The Class HomeController.
+ * The Class HomeController
  * @author Mateusz
  */
 @Controller
