@@ -1,0 +1,291 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  font-family: arial;
+  font-size: 9pt;
+}
+
+h1, h2, h3 {
+	font-family: arial;
+}
+
+a {
+	transition: color 0.2s;
+}
+
+/* Logo */
+
+.main-brand {
+	font-size: 10pt;
+	font-weight: 600;
+	color: #fff !important;
+}
+
+/* Utils */
+
+.custom-font {
+	font-size: 9pt;
+}
+
+.custom-font li a {
+	font-size: 9pt;
+}
+
+a#account-link {
+	color: #fff;
+}
+
+/* Grey header with util links */
+
+div.header {
+	height: 50px;
+	background: #ddd;
+	line-height: 50px;
+}
+
+ul.header-ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul.header-ul li {
+	float: left;
+	margin-right: 30px;
+}
+
+ul.header-ul li a {
+	color: #373737;
+	text-decoration: underline;
+}
+
+ul.header-ul li a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+/* Short announces */
+
+.short-news {
+	margin-top: 50px;
+}
+
+.short-news-container {
+ 	line-height: 23px;
+ 	text-align: justify;
+ }
+ 
+ .show-news {
+ 	font-size: 9pt;
+ }
+ 
+ .short-news-second-row {
+ 	margin-top: 30px;
+ }
+ 
+/* Account options */
+
+ul.account-menu {
+	border-radius: 0px 0px 3px 3px;
+	margin: 0;
+	border-top: none;
+}
+
+ul.account-menu li a {
+	text-decoration: none;
+}
+
+ul.account-menu li a:hover {
+	color: #aaa;
+	text-decoration: none;
+	background: none;
+}
+
+/* Black navbar */
+ 
+ #main-navbar {
+	background: #428bca;
+	color: #fff !important;
+ 	-webkit-box-shadow: 0px 0px 10px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    0px 0px 10px rgba(50, 50, 50, 0.5);
+	box-shadow:         0px 0px 10px rgba(50, 50, 50, 0.5);
+ }
+ 
+ #main-navbar ul {
+ 	color: #fff;
+ }
+ 
+ /* List under news */
+ 
+ ul.under-news-list {
+ 	list-style: none;
+ 	margin: 0;
+ 	padding: 0;
+ }
+ 
+ ul.under-news-list li {
+ 	float:left;
+ 	margin-right: 25px;
+ }
+ 
+ /* Forms */
+ 
+  div.form-container p {
+  	margin: 0;
+  	padding: 0;
+  	margin-top: 10px;
+  }
+  
+ div.form-container {
+ 	width: 400px;
+ 	margin: 0 auto;
+ 	border-radius: 3px;
+ 	margin-top: 50px;
+ 	background: #eee;
+ 	padding: 30px;
+ 	border: 1px solid #ddd;
+ 	text-align: center;
+ }
+ 
+ input.standard-input {
+ 	background: #fff;
+ 	width: 340px;
+ 	height: 30px;
+ 	border: 1px solid #ddd;
+ 	border-radius: 3px;
+ 	padding: 5px 10px 5px 10px;
+ 	transition: border 0.3s;
+ }
+ 
+ input.standard-input:hover {
+ 	border: 1px solid #bbb;
+ }
+ 
+ input.standard-input:focus {
+ 	border: 1px solid #999;
+
+ }
+ 
+ p#main-paragraph {
+ 	padding-bottom: 20px;
+ 	font-weight: bold;
+ }
+ 
+ .login-button {
+ 	font-size: 9pt;
+ 	margin-top: 20px;
+ 	font-weight: bold;
+ }
+ 
+ .custom-alert {
+ 	padding: 10px;
+ 	font-weight: bold;
+ }
+ 
+ div.validation-error {
+ 	padding: 10px;
+ 	color: white;
+ 	background: #FF6666;
+ 	border-radius: 3px;
+ 	border: 1px solid red;
+ }
+ 
+/* Merithorical views */ 
+
+input.merit-input-mini {
+	padding: 10px;
+	width: 160px;
+	background: #ddd;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 12pt;
+	font-weight: bold;
+	color: #373737;
+	transition: border 0.5s;
+}
+ 
+input.merit-input-sm {
+	padding: 10px;
+	width: 300px;
+	background: #ddd;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 12pt;
+	font-weight: bold;
+	color: #373737;
+	transition: border 0.5s;
+}
+
+input.merit-input-med {
+	padding: 10px;
+	width: 500px;
+	background: #ddd;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 12pt;
+	font-weight: bold;
+	color: #373737;
+	transition: border 0.5s;
+} 
+
+input.merit-input-lg {
+	padding: 10px;
+	width: 700px;
+	background: #ddd;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 12pt;
+	font-weight: bold;
+	color: #373737;
+	transition: border 0.5s;
+}
+
+textarea.merit {
+	padding: 10px;
+	width: 500px;
+	height: 180px;
+	background: #ddd;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #373737;
+	transition: border 0.5s;
+	
+} 
+
+input.merit-input-sm:focus, input.merit-input-med:focus, input.merit-input-lg:focus, input.merit-input-mini:focus, textarea.merit:focus {
+	border: 1px solid #373737;
+} 
+
+span.input-label {
+	margin-left: 20px;
+} 
+ 
+div.input-row {
+	display: block;
+	margin-top: 5px;
+}
+
+span.merit-error {
+	font-size: 9pt;
+	font-weight: bold;
+	color: red;
+	padding: 10px 0 10px 0;
+}
+
+/* General views styles */
+
+div.page_view {
+	margin-top: 50px;
+}
+
+div.page_view_left {
+	float: left;
+	width: 49%;
+}
+
+div.page_view_right {
+	float: right;
+	width: 49%;
+}
