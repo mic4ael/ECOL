@@ -52,6 +52,9 @@ public class Navigator {
 	public static final String GROUP_LIST_ATTRIBUTE = "groupList";
 	public static final String EDITED_GROUP_ATTRIBUTE = "editedGroup";
 	
+	public static final String NEW_PRODUCT_FORM_ATTRIBUTE = "newProduct";
+	public static final String NEW_PRODUCT_ATTRIBUTES = "productAttributes";
+	
 	/* Keys */
 	
 	public static final String FINALIZE_REGISTRATION_KEY = "finalize";

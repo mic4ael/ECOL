@@ -11,7 +11,7 @@ import pl.indecoders.archetype.validation.annotation.UniqueGroupName;
  * The Class ProductGroupForm.
  * @author Mateusz
  */
-public class ProductGroupForm {
+public class NewProductGroupForm {
 
 	@NotEmpty
 	@UniqueGroupName

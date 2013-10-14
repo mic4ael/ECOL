@@ -192,25 +192,25 @@ ul.account-menu li a:hover {
  
 /* Merithorical views */ 
 
-input.merit-input-mini {
+input.merit-input-mini, select.merit-input-mini {
 	padding: 10px;
 	width: 160px;
 	background: #ddd;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	font-size: 12pt;
+	font-size: 11pt;
 	font-weight: bold;
 	color: #373737;
 	transition: border 0.5s;
 }
  
-input.merit-input-sm {
+input.merit-input-sm, select.merit-input-sm {
 	padding: 10px;
 	width: 300px;
 	background: #ddd;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	font-size: 12pt;
+	font-size: 11pt;
 	font-weight: bold;
 	color: #373737;
 	transition: border 0.5s;
@@ -222,7 +222,7 @@ input.merit-input-med {
 	background: #ddd;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	font-size: 12pt;
+	font-size: 11pt;
 	font-weight: bold;
 	color: #373737;
 	transition: border 0.5s;
@@ -234,7 +234,7 @@ input.merit-input-lg {
 	background: #ddd;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	font-size: 12pt;
+	font-size: 11pt;
 	font-weight: bold;
 	color: #373737;
 	transition: border 0.5s;

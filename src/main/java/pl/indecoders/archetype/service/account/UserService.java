@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.Authentication;
@@ -93,5 +95,10 @@ public class UserService implements UserDetailsService {
 		List<Role> basicRoles = new LinkedList<>();
 		basicRoles.add(new Role(USER));
 		return basicRoles;
+	}
+	
+	public List<Account> getUsersPage(final Integer pageId, final Integer pageLimit, final String sortProperty, final Direction direction) {
+		PageRequest request = new PageRequest(pageId, pageLimit);
+		return accountRepository.findAll(request).getContent();
 	}
 }

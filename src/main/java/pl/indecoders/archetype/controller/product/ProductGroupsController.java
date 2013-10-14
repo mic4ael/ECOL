@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.form.product.EditionProductGroupForm;
-import pl.indecoders.archetype.form.product.ProductGroupForm;
+import pl.indecoders.archetype.form.product.NewProductGroupForm;
 import pl.indecoders.archetype.repository.product.ProductGroupRepository;
 import pl.indecoders.archetype.service.product.ProductGroupService;
 
@@ -47,7 +47,7 @@ public class ProductGroupsController {
 	@RequestMapping(value = PRODUCT_GROUPS_PATH, method = GET)
 	public String showProductGroupsPage(final Model model, final HttpSession session) {
 		model.addAttribute(GROUPS_COUNT_ATTRIBUTE, productGroupRepository.findByOwner((Account) session.getAttribute(CURRENTLY_SIGNED)).size());
-		model.addAttribute(GROUP_FORM_ATTRIBUTE, new ProductGroupForm());
+		model.addAttribute(GROUP_FORM_ATTRIBUTE, new NewProductGroupForm());
 		model.addAttribute(GROUP_LIST_ATTRIBUTE, productGroupRepository.findByOwner((Account) session.getAttribute(CURRENTLY_SIGNED)));
 		return PRODUCT_GROUPS_VIEW;
 	}
@@ -55,7 +55,7 @@ public class ProductGroupsController {
 	/* Adding a new one */
 
 	@RequestMapping(value = PRODUCT_GROUPS_PATH, method = POST)
-	public String processProductGroupsPage(@Valid @ModelAttribute(GROUP_FORM_ATTRIBUTE) ProductGroupForm form, final BindingResult result,
+	public String processProductGroupsPage(@Valid @ModelAttribute(GROUP_FORM_ATTRIBUTE) NewProductGroupForm form, final BindingResult result,
 			final HttpSession session) {
 		if (result.hasErrors()) {
 			return PRODUCT_GROUPS_VIEW;

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.domain.product.ProductGroup;
 import pl.indecoders.archetype.form.product.EditionProductGroupForm;
-import pl.indecoders.archetype.form.product.ProductGroupForm;
+import pl.indecoders.archetype.form.product.NewProductGroupForm;
 import pl.indecoders.archetype.repository.product.ProductGroupRepository;
 
 /**
@@ -19,7 +19,7 @@ public class ProductGroupService {
 	@Autowired
 	private ProductGroupRepository productGroupRepository;
 	
-	public void persistProductGroup(final ProductGroupForm form, final Account owner) {
+	public void persistProductGroup(final NewProductGroupForm form, final Account owner) {
 		ProductGroup group = new ProductGroup();
 		group.setName(form.getName());
 		group.setSpecification(form.getSpecification() != null ? form.getSpecification() : null);

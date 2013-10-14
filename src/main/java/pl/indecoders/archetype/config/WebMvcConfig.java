@@ -1,21 +1,35 @@
 package pl.indecoders.archetype.config;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.method.support.*;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import org.springframework.web.servlet.view.tiles3.*;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+
+import pl.indecoders.archetype.conversion.ProductGroupConverter;
+import pl.indecoders.archetype.conversion.ProductTypeConverter;
+import pl.indecoders.archetype.conversion.ProductUnitConverter;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
@@ -33,6 +47,17 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
 		requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
 		return requestMappingHandlerMapping;
+	}
+	
+	@Bean
+	public ConversionService conversionService() {
+		ConversionServiceFactoryBean bean = new ConversionServiceFactoryBean();
+		Set<Converter> converters = new HashSet<Converter>();
+		converters.add(new ProductGroupConverter());
+		converters.add(new ProductTypeConverter());
+		converters.add(new ProductUnitConverter());
+		bean.setConverters(converters);
+		return bean.getObject();
 	}
 	
 	@Bean(name = "messageSource")

@@ -15,4 +15,5 @@ public interface ProductGroupRepository extends JpaRepository<ProductGroup, Long
 	
 	public ProductGroup findByOwnerAndName(final Account owner, final String name);
 	public List<ProductGroup> findByOwner(final Account owner);
+	public ProductGroup findByName(final String name);
 }
