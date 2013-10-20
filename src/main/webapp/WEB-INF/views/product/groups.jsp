@@ -44,7 +44,7 @@
 
 		<c:if test="${editedGroup != null}">
 		
-			<form:form modelAttribute="groupForm" method="post">
+			<form:form modelAttribute="editedGroup" method="post">
 				
 				<form:errors path="name" element="span" class="merit-error"></form:errors>
 				
