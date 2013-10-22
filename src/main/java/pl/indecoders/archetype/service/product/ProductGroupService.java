@@ -24,6 +24,7 @@ public class ProductGroupService {
 		group.setName(form.getName());
 		group.setSpecification(form.getSpecification() != null ? form.getSpecification() : null);
 		group.setOwner(owner);
+		
 		productGroupRepository.save(group);
 	}
 	
@@ -34,9 +35,11 @@ public class ProductGroupService {
 	public void editProductGroup(final Long id, final EditionProductGroupForm form) {
 		ProductGroup group = productGroupRepository.findOne(id);
 		group.setName(form.getName());
+		
 		if(form.getSpecification() != null) {
 			group.setSpecification(form.getSpecification());
 		}
+		
 		productGroupRepository.save(group);
 	}
 }

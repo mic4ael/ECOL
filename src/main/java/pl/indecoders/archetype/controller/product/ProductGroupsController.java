@@ -91,6 +91,7 @@ public class ProductGroupsController {
 	public String editProductGroup(@PathVariable Long id, final Model model) {
 		model.addAttribute(EDITED_GROUP_ATTRIBUTE, productGroupRepository.findOne(id));
 		model.addAttribute(GROUP_FORM_ATTRIBUTE, new EditionProductGroupForm());
+		
 		return PRODUCT_GROUPS_VIEW;
 	}
 
