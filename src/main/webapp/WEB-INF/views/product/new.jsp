@@ -12,12 +12,6 @@
 	</p>
 
 	<form:form modelAttribute="newProduct" method="post">
-		
-			<div class="input-row">
-				<form:input path="productCode" type="text"
-					class="merit-input-med" />
-				<span class="input-label"><s:message code="newProduct.code" /></span>
-			</div>
 
 			<div class="input-row">
 				<form:input path="productName" type="text"

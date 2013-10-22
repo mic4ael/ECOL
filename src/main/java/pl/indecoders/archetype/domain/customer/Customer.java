@@ -1,5 +1,6 @@
 package pl.indecoders.archetype.domain.customer;
 
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 import static org.joda.time.DateTime.now;
@@ -34,14 +35,11 @@ public class Customer extends AbstractEntity {
 	@SequenceGenerator(name = "Customer_SEQUENCE", sequenceName = "customer_seq")
 	@GeneratedValue(generator = "Customer_SEQUENCE")
 	private Long id;
-
-	@Column(name = "customer_code")
-	private String customerCode;
 	
 	@Column(name = "name")
 	private String name;
 	
-	@OneToOne(fetch = EAGER)
+	@OneToOne(fetch = EAGER, cascade = ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
@@ -57,6 +55,9 @@ public class Customer extends AbstractEntity {
 	@Column(name = "fax_phone")
 	private String faxPhone;
 
+	@Column(name = "is_visible")
+	private Boolean isVisible;
+	
 	@ManyToOne(fetch = EAGER)
 	@JoinColumn(name = "customer_owner_id")
 	private Account owner;
@@ -125,14 +126,6 @@ public class Customer extends AbstractEntity {
 		this.owner = owner;
 	}
 	
-	public String getCustomerCode() {
-		return customerCode;
-	}
-
-	public void setCustomerCode(String customerCode) {
-		this.customerCode = customerCode;
-	}
-	
 	public Customer() {
 		super(now(UTC));
 	}
@@ -140,5 +133,13 @@ public class Customer extends AbstractEntity {
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, SHORT_PREFIX_STYLE);
+	}
+
+	public Boolean getIsVisible() {
+		return isVisible;
+	}
+
+	public void setIsVisible(Boolean isVisible) {
+		this.isVisible = isVisible;
 	}
 }

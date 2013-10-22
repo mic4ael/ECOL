@@ -25,6 +25,8 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 			access="permitAll" />
 		<security:intercept-url pattern="/login/*"
 			access="permitAll" />
+		<security:intercept-url pattern="/test"
+			access="permitAll" />
 		<security:intercept-url pattern="/**"
 			access="isAuthenticated()" />
 

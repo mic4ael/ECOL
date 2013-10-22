@@ -11,9 +11,11 @@
 
 		<p id="main-paragraph"><s:message code="loginView.authorization" /></p>
 
+		<p id="regInfo"></p>
+
 		<form:form modelAttribute="registerAccount">
 			<p>
-				<form:input path="email" class="standard-input" type="text"
+				<form:input path="email" id="emailInput" class="standard-input" type="text"
 					placeholder="${email}" />
 			</p>
 			<p>
@@ -32,3 +34,6 @@
 
 	</div>
 </div>
+
+<script src="<c:url value="/resources/js/registration.js" />"></script>
+

@@ -2,7 +2,6 @@ package pl.indecoders.archetype.controller.product;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static pl.indecoders.archetype.navigation.Navigator.CURRENTLY_SIGNED;
 import static pl.indecoders.archetype.navigation.Navigator.EDITED_GROUP_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.GROUPS_COUNT_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.GROUP_FORM_ATTRIBUTE;
@@ -10,6 +9,8 @@ import static pl.indecoders.archetype.navigation.Navigator.GROUP_LIST_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUP_REDIRECT;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -23,10 +24,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import pl.indecoders.archetype.domain.account.Account;
+import pl.indecoders.archetype.domain.product.ProductGroup;
 import pl.indecoders.archetype.form.product.EditionProductGroupForm;
 import pl.indecoders.archetype.form.product.NewProductGroupForm;
 import pl.indecoders.archetype.repository.product.ProductGroupRepository;
+import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.product.ProductGroupService;
 
 /**
@@ -35,7 +37,7 @@ import pl.indecoders.archetype.service.product.ProductGroupService;
  * @author Mateusz
  */
 @Controller
-@SessionAttributes({ CURRENTLY_SIGNED, GROUPS_COUNT_ATTRIBUTE, GROUP_LIST_ATTRIBUTE })
+@SessionAttributes({ GROUP_LIST_ATTRIBUTE })
 public class ProductGroupsController {
 
 	@Autowired
@@ -44,11 +46,22 @@ public class ProductGroupsController {
 	@Autowired
 	private ProductGroupService productGroupService;
 
+	@Autowired
+	private SecurityUserContext userContext;
+	
+	@ModelAttribute(GROUPS_COUNT_ATTRIBUTE) 
+	public Long countProductGroups() {
+		return productGroupRepository.countByOwner(userContext.getSignedUser());
+	}
+	
+	@ModelAttribute(GROUP_LIST_ATTRIBUTE)
+	public List<ProductGroup> sendGroups() {
+		return productGroupRepository.findByOwner(userContext.getSignedUser());
+	}
+	
 	@RequestMapping(value = PRODUCT_GROUPS_PATH, method = GET)
 	public String showProductGroupsPage(final Model model, final HttpSession session) {
-		model.addAttribute(GROUPS_COUNT_ATTRIBUTE, productGroupRepository.findByOwner((Account) session.getAttribute(CURRENTLY_SIGNED)).size());
 		model.addAttribute(GROUP_FORM_ATTRIBUTE, new NewProductGroupForm());
-		model.addAttribute(GROUP_LIST_ATTRIBUTE, productGroupRepository.findByOwner((Account) session.getAttribute(CURRENTLY_SIGNED)));
 		return PRODUCT_GROUPS_VIEW;
 	}
 
@@ -60,7 +73,7 @@ public class ProductGroupsController {
 		if (result.hasErrors()) {
 			return PRODUCT_GROUPS_VIEW;
 		}
-		productGroupService.persistProductGroup(form, (Account) session.getAttribute(CURRENTLY_SIGNED));
+		productGroupService.persistProductGroup(form, userContext.getSignedUser());
 		return PRODUCT_GROUP_REDIRECT;
 	}
 

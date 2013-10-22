@@ -8,6 +8,8 @@
 <s:message code="groups.groupName" var="groupName" />
 <s:message code="groups.specification" var="groupSpecif" />
 
+
+
 <div class="page_view">
 
 	<p>

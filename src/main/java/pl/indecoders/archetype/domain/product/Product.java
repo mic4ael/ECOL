@@ -43,9 +43,6 @@ public class Product extends AbstractEntity {
 	@GeneratedValue(generator = "Product_SEQUENCE")
 	private Long id;
 	
-	@Column(name = "product_code")
-	private String productCode;
-	
 	@Column(name = "product_name")
 	private String productName;
 	
@@ -72,6 +69,9 @@ public class Product extends AbstractEntity {
 	@JoinColumn(name = "product_owner_id")
 	private Account owner;
 
+	@Column(name = "is_visible")
+	private Boolean isVisible;
+	
 	@ManyToOne(fetch = EAGER)
 	@JoinColumn(name = "product_group_id")
 	private ProductGroup group;
@@ -82,14 +82,6 @@ public class Product extends AbstractEntity {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getProductCode() {
-		return productCode;
-	}
-
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
 	}
 
 	public String getProductName() {
@@ -180,5 +172,13 @@ public class Product extends AbstractEntity {
 			Product comparedProduct = (Product) obj;
 			return new EqualsBuilder().append(this.id, comparedProduct.id).isEquals();
 		}
+	}
+
+	public Boolean getIsVisible() {
+		return isVisible;
+	}
+
+	public void setIsVisible(Boolean isVisible) {
+		this.isVisible = isVisible;
 	}
 }

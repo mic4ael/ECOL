@@ -14,6 +14,12 @@
 	
 	<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" media="screen" />
 	<link href="<c:url value="/resources/css/core.css" />" rel="stylesheet" media="screen" />
+	<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" media="screen" />
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	
 	
 	<tilesx:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" />
 	<c:forEach var="cssName" items="${styles}">
@@ -40,8 +46,6 @@
 	<!-- End of page content -->
 	<tiles:insertAttribute name="footer"  defaultValue="" />
 	
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-
+	
 </body>
 </html>

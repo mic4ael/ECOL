@@ -4,6 +4,7 @@ import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
+import static pl.indecoders.archetype.navigation.Navigator.POSTAL_CODE_REGEX;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 import pl.indecoders.archetype.domain.AbstractEntity;
+import pl.indecoders.archetype.validation.annotation.RegularExpression;
 
 /**
  * The Class Address.

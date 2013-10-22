@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.form.account.RegisterAccountForm;
+import pl.indecoders.archetype.repository.accout.AccountRepository;
 import pl.indecoders.archetype.service.account.UserService;
 
 /**
@@ -32,6 +33,9 @@ public class RegistrationController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AccountRepository accountRepository;
 
 	@RequestMapping(value = REGISTRATION_PATH, method = GET)
 	public String showRegistrationPage(Model model) {

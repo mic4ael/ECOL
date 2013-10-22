@@ -21,7 +21,6 @@ import pl.indecoders.archetype.domain.product.Unit;
  */
 public class NewProductForm {
 
-	private String productCode;
 	private String productName;
 	private String productSpecification;
 	
@@ -38,14 +37,6 @@ public class NewProductForm {
 	private BigDecimal basePrice;
 
 	private ProductGroup group;
-
-	public String getProductCode() {
-		return productCode;
-	}
-
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
-	}
 
 	public String getProductName() {
 		return productName;

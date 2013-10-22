@@ -14,6 +14,7 @@ public class Navigator {
 	
 	public static final String MAIN_REDIRECT = "redirect:/";
 	public static final String PRODUCT_GROUP_REDIRECT = "redirect:/product-groups";
+	public static final String NEW_CUSTOMER_REDIRECT = "redirect:/new-customer";
 	
 	public static final String BAD_CREDENTIALS = "bad-credentials";
 	public static final String HOME_PATH = "/";
@@ -26,6 +27,11 @@ public class Navigator {
 	public static final String CUSTOMERS_LIST_PATH = "/customers-list";
 	public static final String PRODUCT_GROUPS_PATH = "/product-groups";
 	
+	public static final String NEW_INVOICE_PATH = "/new-invoice";
+	public static final String INVOICES_LIST_PATH = "/invoices-list";
+	
+	public static final String IS_CUSTOMER_AVAILABLE="/isCustomerAvailable";
+	
 	/* Views */
 
 	public static final String HOME_VIEW = "home";
@@ -37,6 +43,9 @@ public class Navigator {
 	public static final String CUSTOMERS_LIST_VIEW = "customersList";
 	public static final String PRODUCTS_LIST_VIEW = "productsList";
 	public static final String PRODUCT_GROUPS_VIEW = "productGroups";
+	
+	public static final String NEW_INVOICE_VIEW = "newInvoice";
+	public static final String INVOICES_LIST_VIEW = "invoicesList";
 	
 	/* Attributes */
 	
@@ -54,6 +63,15 @@ public class Navigator {
 	
 	public static final String NEW_PRODUCT_FORM_ATTRIBUTE = "newProduct";
 	public static final String NEW_PRODUCT_ATTRIBUTES = "productAttributes";
+	
+	public static final String NEW_CUSTOMER_FORM_ATTRIBUTE = "newCustomer";
+	public static final String CUSTOMER_COUNT_ATTRIBUTE = "customersCount";
+	public static final String CUSTOMER_LIST_ATTRIBUTE = "customersList";
+	public static final String CUSTOMER_LIST_SORT_ATTRIBUTE = "customersSort";
+	public static final String CUSTOMER_LIST_DIR_ATTRIBUTE = "customersDir";
+	public static final String CUSTOMER_LIST_PAGES_ATTRIBUTE = "customersPages";
+	
+	public static final String OPERATION_SUCCESS = "success";
 	
 	/* Keys */
 	

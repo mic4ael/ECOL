@@ -19,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pl.indecoders.archetype.form.account.PersonalInformationsForm;
 import pl.indecoders.archetype.security.SecurityUserContext;
@@ -30,7 +29,6 @@ import pl.indecoders.archetype.service.account.ProfileService;
  * @author Mateusz
  */
 @Controller
-@SessionAttributes(CURRENTLY_SIGNED)
 public class HomeController {
 
 	@Autowired
@@ -44,7 +42,6 @@ public class HomeController {
 		if(principal != null) {
 			model.addAttribute(PERSONAL_INFORMATIONS_FORM, profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal)));
 			model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));
-			session.setAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));
 			return HOME_VIEW;
 		}
 		return LOGIN_VIEW;
