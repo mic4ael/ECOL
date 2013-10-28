@@ -99,7 +99,14 @@
 				</c:forEach>
 			</tbody>
 		</table>
-	
+		<c:if test="${groupPagesCount > 1}">
+	        <div class="pagination" style="float: right;">
+				<ul>
+			        <c:forEach begin="1" end="${groupPagesCount}" var="page">
+		                <li><a href='<s:url value="/product-groups/${page}"></s:url>'>${page}</a></li>
+			        </c:forEach>
+				</ul>
+	        </div>
+	    </c:if>
 	</div>
-
 </div>

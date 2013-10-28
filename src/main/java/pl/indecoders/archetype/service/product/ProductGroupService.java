@@ -1,6 +1,11 @@
 package pl.indecoders.archetype.service.product;
 
+import static pl.indecoders.archetype.utils.SortTranslationUtils.translateDirection;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import pl.indecoders.archetype.domain.account.Account;
@@ -30,6 +35,11 @@ public class ProductGroupService {
 	
 	public void removeProductGroup(final Long id) {
 		productGroupRepository.delete(id);
+	}
+	
+	public List<ProductGroup> getProductGroupsPerPage(final Account owner, final int pageIndex, final int itemsPerPage) {
+		final PageRequest request = new PageRequest(pageIndex, itemsPerPage);
+		return productGroupRepository.findByOwner(request, owner);
 	}
 	
 	public void editProductGroup(final Long id, final EditionProductGroupForm form) {

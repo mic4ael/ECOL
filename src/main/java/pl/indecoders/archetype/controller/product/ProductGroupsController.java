@@ -9,6 +9,7 @@ import static pl.indecoders.archetype.navigation.Navigator.GROUP_LIST_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUP_REDIRECT;
+import static pl.indecoders.archetype.navigation.Navigator.GROUPS_PAGES_COUNT;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ import pl.indecoders.archetype.form.product.NewProductGroupForm;
 import pl.indecoders.archetype.repository.product.ProductGroupRepository;
 import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.product.ProductGroupService;
+import pl.indecoders.archetype.utils.PaginationUtils;
 
 /**
  * The Class ProductGroupsController.
@@ -39,7 +41,8 @@ import pl.indecoders.archetype.service.product.ProductGroupService;
 @Controller
 @SessionAttributes({ GROUP_LIST_ATTRIBUTE })
 public class ProductGroupsController {
-
+	private static final Integer RESULTS_ON_PAGE = 6;
+	
 	@Autowired
 	private ProductGroupRepository productGroupRepository;
 
@@ -54,14 +57,30 @@ public class ProductGroupsController {
 		return productGroupRepository.countByOwner(userContext.getSignedUser());
 	}
 	
+	@ModelAttribute(GROUPS_PAGES_COUNT)
+	public Integer groupsPageCount() {
+		return new PaginationUtils(RESULTS_ON_PAGE).numberOfPages(productGroupRepository.countByOwner(userContext.getSignedUser()));
+	}
+	
 	@ModelAttribute(GROUP_LIST_ATTRIBUTE)
 	public List<ProductGroup> sendGroups() {
 		return productGroupRepository.findByOwner(userContext.getSignedUser());
 	}
 	
-	@RequestMapping(value = PRODUCT_GROUPS_PATH, method = GET)
-	public String showProductGroupsPage(final Model model, final HttpSession session) {
+	@RequestMapping(value = PRODUCT_GROUPS_PATH, method = GET) 
+	public String showProductGroups(final Model model, @ModelAttribute(GROUPS_PAGES_COUNT) Integer numberOfPages) {
+		if (numberOfPages > 0)
+			return "redirect: " + PRODUCT_GROUPS_PATH + "/" + 1;
+		
+		return PRODUCT_GROUPS_PATH;
+	}
+	
+	@RequestMapping(value = PRODUCT_GROUPS_PATH + "/{page}", method = GET)
+	public String showProductGroupsPage(final Model model, final HttpSession session, @PathVariable Integer page) {
 		model.addAttribute(GROUP_FORM_ATTRIBUTE, new NewProductGroupForm());
+		model.addAttribute(GROUP_LIST_ATTRIBUTE, productGroupService.getProductGroupsPerPage(userContext.getSignedUser(), page - 1, RESULTS_ON_PAGE));
+		
+		
 		return PRODUCT_GROUPS_VIEW;
 	}
 

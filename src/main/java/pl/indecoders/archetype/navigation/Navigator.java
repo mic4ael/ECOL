@@ -65,6 +65,7 @@ public class Navigator {
 	public static final String GROUPS_COUNT_ATTRIBUTE = "groupsCount";
 	public static final String GROUP_FORM_ATTRIBUTE = "groupForm";
 	public static final String GROUP_LIST_ATTRIBUTE = "groupList";
+	public static final String GROUPS_PAGES_COUNT = "groupPagesCount";
 	public static final String EDITED_GROUP_ATTRIBUTE = "editedGroup";
 	
 	public static final String NEW_PRODUCT_FORM_ATTRIBUTE = "newProduct";
