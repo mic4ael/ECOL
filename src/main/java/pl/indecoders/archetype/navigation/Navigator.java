@@ -31,6 +31,11 @@ public class Navigator {
 	public static final String INVOICES_LIST_PATH = "/invoices-list";
 	
 	public static final String IS_CUSTOMER_AVAILABLE="/isCustomerAvailable";
+	public static final String GET_CUSTOMERS_JSON = "customersJson";
+	public static final String GET_PROPER_CUSTOMER_JSON = "customerJson";
+	
+	public static final String NEW_INVOICE_ATTRIBUTES = "newInvoice";
+	public static final String NEW_INVOICE_NUMBER_ATTRIBUTE = "invoiceNumber";
 	
 	/* Views */
 
@@ -43,6 +48,7 @@ public class Navigator {
 	public static final String CUSTOMERS_LIST_VIEW = "customersList";
 	public static final String PRODUCTS_LIST_VIEW = "productsList";
 	public static final String PRODUCT_GROUPS_VIEW = "productGroups";
+	public static final String EDIT_CUSTOMER_VIEW = "editCustomer";
 	
 	public static final String NEW_INVOICE_VIEW = "newInvoice";
 	public static final String INVOICES_LIST_VIEW = "invoicesList";
@@ -70,6 +76,7 @@ public class Navigator {
 	public static final String CUSTOMER_LIST_SORT_ATTRIBUTE = "customersSort";
 	public static final String CUSTOMER_LIST_DIR_ATTRIBUTE = "customersDir";
 	public static final String CUSTOMER_LIST_PAGES_ATTRIBUTE = "customersPages";
+	public static final String EDITED_CUSTOMER_ATTRIBUTE = "editedCustomer";
 	
 	public static final String OPERATION_SUCCESS = "success";
 	

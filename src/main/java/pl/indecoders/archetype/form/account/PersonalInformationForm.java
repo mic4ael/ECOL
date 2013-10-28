@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  * The Class PersonalInformations.
  * @author Mateusz
  */
-public class PersonalInformationsForm {
+public class PersonalInformationForm {
 
 	//FIXME Validation!!!
 	

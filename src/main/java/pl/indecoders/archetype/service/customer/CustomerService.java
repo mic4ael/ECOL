@@ -61,4 +61,16 @@ public class CustomerService {
 		customer.setIsVisible(false);
 		customerRepository.save(customer);
 	}
+	
+	public void editCustomer(final Long id, final NewCustomerForm form) {
+		Customer customer = customerRepository.findOne(id);
+		customer.setName(form.getName());
+		customer.setNip(form.getNip());
+		customer.setAddress(createAddress(form));
+		customer.setContactPhone(form.getContactPhone() != null ? form.getContactPhone() : null);
+		customer.setFaxPhone(form.getFaxPhone() != null ? form.getFaxPhone() : null);
+		customer.setEmail(form.getEmail() != null ? form.getEmail() : null);
+		customer.setIsVisible(true);
+		customerRepository.save(customer);
+	}
 }

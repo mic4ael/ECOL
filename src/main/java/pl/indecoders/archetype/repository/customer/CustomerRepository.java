@@ -18,7 +18,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>, JpaSp
 	
 	@Query("select count(c) from Customer c where c.owner = ?1 and isVisible = true")
 	public Long countByOwner(final Account owner);
-	
+
 	public List<Customer> findByOwnerAndIsVisible(Pageable pageable, final Account owner, final Boolean isVisible);
 	public Customer findByOwnerAndNameAndIsVisible(final Account owner, final String name, final Boolean isVisible);
+	public List<Customer> findByOwnerAndIsVisible(final Account owner, final Boolean isVisible);
 }

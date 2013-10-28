@@ -375,6 +375,16 @@ div.container-small {
 	border: 1px solid #ccc;
 }
 
+div.container-med {
+	width: 278px;
+	margin: 10px;
+	padding: 3px;
+	text-align: center;
+	border-radius: 3px;
+	background: #eee;
+	border: 1px solid #ccc;
+}
+
 div.invoice-piece-left {
 	float: left;
 	width: 48%;
@@ -422,4 +432,19 @@ div.pagination ul li a {
 	border: 1px solid #cccccc;
 	font-weight: bold;
 	margin-left: 3px;
+}
+
+.clickable {
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.clickable:hover {
+	background: #ddd;
+}
+
+div.modal-record-container {
+	display: block;
+	height: 200px;
+	overflow: auto;
 }
