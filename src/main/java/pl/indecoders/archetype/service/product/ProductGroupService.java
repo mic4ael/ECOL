@@ -1,8 +1,8 @@
 package pl.indecoders.archetype.service.product;
 
-import static pl.indecoders.archetype.utils.SortTranslationUtils.translateDirection;
-
 import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -44,12 +44,13 @@ public class ProductGroupService {
 	
 	public void editProductGroup(final Long id, final EditionProductGroupForm form) {
 		ProductGroup group = productGroupRepository.findOne(id);
+		
 		group.setName(form.getName());
 		
 		if(form.getSpecification() != null) {
 			group.setSpecification(form.getSpecification());
 		}
 		
-		productGroupRepository.save(group);
+		productGroupRepository.updateProductGroup(id, group.getName(), group.getSpecification());
 	}
 }

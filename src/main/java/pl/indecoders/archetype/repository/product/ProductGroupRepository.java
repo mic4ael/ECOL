@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import pl.indecoders.archetype.domain.account.Account;
-import pl.indecoders.archetype.domain.product.Product;
 import pl.indecoders.archetype.domain.product.ProductGroup;
 
 /**
@@ -21,6 +20,9 @@ public interface ProductGroupRepository extends JpaRepository<ProductGroup, Long
 	public List<ProductGroup> findByOwner(final Account owner);
 	public List<ProductGroup> findByOwner(final Pageable req, final Account owner);
 	public ProductGroup findByName(final String name);
+	
+	@Query("UPDATE ProductGroup p set p.name=?2, p.specification=?3 WHERE p.id=?1")
+	public void updateProductGroup(final Long id, final String name, final String spec);
 	
 	@Query("select count(p) from ProductGroup p where p.owner = ?1")
 	public Long countByOwner(final Account owner);

@@ -22,7 +22,7 @@
 		
 		<c:if test="${editedGroup == null}">
 		
-			<form:form modelAttribute="groupForm" method="post">
+			<form:form modelAttribute="groupForm" method="post" action="${pageContext.request.contextPath }/product-groups">
 				
 				<form:errors path="name" element="span" class="merit-error"></form:errors>
 				
@@ -46,7 +46,7 @@
 
 		<c:if test="${editedGroup != null}">
 		
-			<form:form modelAttribute="editedGroup" method="post">
+			<form:form modelAttribute="editedGroup" method="post" action="${pageContext.request.contextPath }/product-groups">
 				
 				<form:errors path="name" element="span" class="merit-error"></form:errors>
 				
@@ -84,19 +84,26 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${groupList}" var="row">
-				
-				<c:url value="/product-groups/${row.id}/edit" var="editUrl" />
-				<c:url value="/product-groups/${row.id}/delete" var="deleteUrl" />
-				
-					<tr>
-						<td>${row.name}</td>
-						<td>${row.specification}</td>
-						<td><a href="${editUrl}"><s:message code="groups.edit" /></a></td>
-						<td><a href="${deleteUrl}"><s:message code="groups.delete" /></a></td>
-					</tr>
+			<c:choose>
+				<c:when test="${empty groupList}">
+					<tr><td colspan="4" style="text-align: center;"><s:message code="groups.norows"/></td></tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${groupList}" var="row">
 					
-				</c:forEach>
+					<c:url value="/product-groups/${row.id}/edit" var="editUrl" />
+					<c:url value="/product-groups/${row.id}/delete" var="deleteUrl" />
+					
+						<tr>
+							<td>${row.name}</td>
+							<td>${row.specification}</td>
+							<td><a href="${editUrl}"><s:message code="groups.edit" /></a></td>
+							<td><a href="${deleteUrl}"><s:message code="groups.delete" /></a></td>
+						</tr>
+						
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 			</tbody>
 		</table>
 		<c:if test="${groupPagesCount > 1}">
