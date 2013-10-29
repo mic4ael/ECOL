@@ -46,7 +46,7 @@
 
 		<c:if test="${editedGroup != null}">
 		
-			<form:form modelAttribute="editedGroup" method="post" action="${pageContext.request.contextPath }/product-groups">
+			<form:form modelAttribute="editedGroup" method="post" action="${pageContext.request.contextPath }/product-groups/${id}/edit">
 				
 				<form:errors path="name" element="span" class="merit-error"></form:errors>
 				

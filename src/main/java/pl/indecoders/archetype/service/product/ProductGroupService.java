@@ -2,8 +2,6 @@ package pl.indecoders.archetype.service.product;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -51,6 +49,7 @@ public class ProductGroupService {
 			group.setSpecification(form.getSpecification());
 		}
 		
-		productGroupRepository.updateProductGroup(id, group.getName(), group.getSpecification());
+		productGroupRepository.save(group);
+		
 	}
 }
