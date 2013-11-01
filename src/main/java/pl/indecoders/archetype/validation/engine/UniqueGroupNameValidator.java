@@ -33,7 +33,11 @@ public class UniqueGroupNameValidator implements ConstraintValidator<UniqueGroup
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		ProductGroup group = productGroupRepository.findByOwnerAndName((Account) session.getAttribute(CURRENTLY_SIGNED), value);
+		Account currentlySigned = (Account) session.getAttribute(CURRENTLY_SIGNED);
+		
+		System.out.println("ASDASDASD" + currentlySigned);
+		
+		ProductGroup group = productGroupRepository.findByOwnerAndName(currentlySigned, value);
 		return group == null;
 	}
 }

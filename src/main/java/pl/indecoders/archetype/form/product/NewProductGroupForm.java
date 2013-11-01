@@ -2,6 +2,8 @@ package pl.indecoders.archetype.form.product;
 
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
+import javax.validation.constraints.Size;
+
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -14,9 +16,11 @@ import pl.indecoders.archetype.validation.annotation.UniqueGroupName;
 public class NewProductGroupForm {
 
 	@NotEmpty
+	@Size(max=255)
 	@UniqueGroupName
 	private String name;
 	
+	@Size(max=255)
 	private String specification;
 	
 	public String getName() {

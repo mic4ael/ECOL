@@ -10,6 +10,7 @@ import static pl.indecoders.archetype.navigation.Navigator.GROUP_LIST_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUP_REDIRECT;
+import static pl.indecoders.archetype.navigation.Navigator.CURRENTLY_SIGNED;
 
 import java.util.List;
 
@@ -72,6 +73,9 @@ public class ProductGroupsController {
 	public String showProductGroupsPage(final Model model, final HttpSession session, @PathVariable Integer page) {
 		model.addAttribute(GROUP_FORM_ATTRIBUTE, new NewProductGroupForm());
 		model.addAttribute(GROUP_LIST_ATTRIBUTE, productGroupService.getProductGroupsPerPage(userContext.getSignedUser(), page - 1, RESULTS_ON_PAGE));
+		
+		if (session.getAttribute(CURRENTLY_SIGNED) == null)
+			session.setAttribute(CURRENTLY_SIGNED, userContext.getSignedUser());
 		
 		return PRODUCT_GROUPS_VIEW;
 	}

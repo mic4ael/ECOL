@@ -2,8 +2,12 @@ package pl.indecoders.archetype.form.product;
 
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
+import javax.validation.constraints.Size;
+
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import pl.indecoders.archetype.validation.annotation.UniqueGroupName;
 
 /**
  * The Class ProductGroupForm.
@@ -12,8 +16,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class EditionProductGroupForm {
 
 	@NotEmpty
+	@Size(max=255, message="The value of this field can not be larger than 255")
+	@UniqueGroupName
 	private String name;
 	
+	@Size(max=255, message="The value of this field can not be larger than 255")
 	private String specification;
 	
 	public String getName() {

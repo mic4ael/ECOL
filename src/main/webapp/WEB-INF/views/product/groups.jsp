@@ -24,7 +24,7 @@
 		
 			<form:form modelAttribute="groupForm" method="post" action="${pageContext.request.contextPath }/product-groups">
 				
-				<form:errors path="name" element="span" class="merit-error"></form:errors>
+				<form:errors path="name" element="span" class="merit-error"/>				
 				
 				<div class="input-row">
 					<form:input path="name" type="text"
@@ -32,6 +32,7 @@
 				</div>
 	
 				<div class="input-row">
+				<form:errors path="specification" element="span" class="merit-error"/>
 					<form:textarea path="specification" type="text"
 						class="merit" placeholder="${groupSpecif}" />
 				</div>
@@ -48,7 +49,7 @@
 		
 			<form:form modelAttribute="editedGroup" method="post" action="${pageContext.request.contextPath }/product-groups/${id}/edit">
 				
-				<form:errors path="name" element="span" class="merit-error"></form:errors>
+				<form:errors path="name" element="span" class="merit-error"/>
 				
 				<div class="input-row">
 					<form:input path="name" value="${editedGroup.name}" type="text"
@@ -56,6 +57,7 @@
 				</div>
 	
 				<div class="input-row">
+				<form:errors path="specification" element="span" class="merit-error"/>
 					<form:textarea path="specification" type="text"
 						class="merit" placeholder="${groupSpecif}"></form:textarea>
 				</div>
@@ -74,7 +76,7 @@
 	
 		<p><s:message code="groups.seeList" /></p>
 		
-		<table class="table table-striped">
+		<table class="table table-striped" style="table-layout: fixed;">
 			<thead>
 				<tr>
 					<th><s:message code="groups.name" /></th>
@@ -95,8 +97,8 @@
 					<c:url value="/product-groups/${row.id}/delete" var="deleteUrl" />
 					
 						<tr>
-							<td>${row.name}</td>
-							<td>${row.specification}</td>
+							<td style="word-wrap: break-word;">${row.name}</td>
+							<td style="word-wrap: break-word;">${row.specification}</td>
 							<td><a href="${editUrl}"><s:message code="groups.edit" /></a></td>
 							<td><a href="${deleteUrl}"><s:message code="groups.delete" /></a></td>
 						</tr>
