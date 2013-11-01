@@ -10,12 +10,18 @@ import static pl.indecoders.archetype.navigation.Navigator.CUSTOMER_LIST_ATTRIBU
 import static pl.indecoders.archetype.navigation.Navigator.CUSTOMER_LIST_DIR_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.CUSTOMER_LIST_PAGES_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.CUSTOMER_LIST_SORT_ATTRIBUTE;
+import static pl.indecoders.archetype.navigation.Navigator.EDITED_CUSTOMER_ATTRIBUTE;
+import static pl.indecoders.archetype.navigation.Navigator.EDIT_CUSTOMER_VIEW;
+import static pl.indecoders.archetype.navigation.Navigator.GET_CUSTOMERS_JSON;
+import static pl.indecoders.archetype.navigation.Navigator.GET_PROPER_CUSTOMER_JSON;
 import static pl.indecoders.archetype.navigation.Navigator.IS_CUSTOMER_AVAILABLE;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_CUSTOMER_FORM_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_CUSTOMER_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_CUSTOMER_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.OPERATION_SUCCESS;
+import static pl.indecoders.archetype.specification.customer.CustomerSpecifications.hasOwnerAndFiltered;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -33,6 +39,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import pl.indecoders.archetype.domain.customer.Customer;
 import pl.indecoders.archetype.form.customer.NewCustomerForm;
 import pl.indecoders.archetype.repository.customer.CustomerRepository;
 import pl.indecoders.archetype.security.SecurityUserContext;
@@ -137,4 +144,33 @@ public class CustomerController {
 	}
 	
 	/* Edit customer */
-}
+	
+	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/edit", method = GET)
+	public String showEditCustomerPage(@PathVariable Long id, final Model model) {
+		model.addAttribute(EDITED_CUSTOMER_ATTRIBUTE, customerRepository.findOne(id));
+		return EDIT_CUSTOMER_VIEW;
+	}
+	
+	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/edit", method = POST)
+	public String processEditCustomerPage(@PathVariable Long id, @Valid @ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE) NewCustomerForm form, final BindingResult results) {
+		if(results.hasErrors()) {
+			return EDIT_CUSTOMER_VIEW;
+		}
+		customerService.editCustomer(id, form);
+		return "redirect:" + CUSTOMERS_LIST_PATH + "/1";
+	}
+	
+	/* Customers list in JSon */
+	
+	@ResponseBody
+	@RequestMapping(value = GET_CUSTOMERS_JSON, method = POST)
+	public List<Customer> getCustomersJson(@RequestBody String pattern) {
+		return customerRepository.findAll(hasOwnerAndFiltered(userContext.getSignedUser(), pattern));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = GET_PROPER_CUSTOMER_JSON, method = POST)
+	public Customer getCustomerJson(@RequestBody Long id) {
+		return customerRepository.findOne(id);
+	}
+ }

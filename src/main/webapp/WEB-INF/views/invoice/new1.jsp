@@ -8,7 +8,9 @@
 <% pageContext.setAttribute("now", new org.joda.time.DateTime()); %>
 <joda:format value="${now}" var="actualDate" pattern="dd - MM - yyyy"/>
 
+<joda:format value="${now}" var="actualYear" pattern="yyyy" />
 
+<s:message code="newInvoice.searchCustomerPlaceholder" var="filter" />
 
 	<!-- New customer modal -->
 
@@ -19,14 +21,37 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
-				<h4 class="modal-title">ok</h4>
-
+				<strong><s:message code="newInvoice.checkCustomer" /></strong>
 			</div>
 
-			<div class="modal-body">...</div>
+			<div class="modal-body">
+			
+				<div class="modal-row">
+					<input class="inv-input-med" id="searchCustomerInput" placeholder="${filter}" />
+				</div>
+			
+				<div class="modal-record-container">
+			
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="display: none;">id</th>
+								<th><s:message code="newCustomer.name" /></th>
+								<th><s:message code="newCustomer.city" /></th>
+								<th><s:message code="newCustomer.nip" /></th>
+							</tr>
+						</thead>
+						<tbody id="customersJsonList">
+							
+						</tbody>
+					</table>
+				
+				</div>
+			
+			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button id="customersModalCloser" type="button" class="btn btn-default">Close</button>
 			</div>
 		</div>
 	</div>
@@ -47,12 +72,12 @@
 
 			<div class="container-small pull-left">
 				<span><s:message code="newInvoice.number" /></span> <input
-					type="text" class="inv-input-sm" />
+					type="text" value="${actualYear} / ${invoiceNumber}" class="inv-input-sm" />
 			</div>
 
 			<div class="container-small pull-left">
 				<span><s:message code="newInvoice.city" /></span> <input
-					type="text" class="inv-input-sm" />
+					type="text" value="${newInvoice.city}" class="inv-input-sm" />
 			</div>
 
 			<div class="container-small pull-left">
@@ -78,42 +103,42 @@
 				</p>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.name}" type="text" /> <span><s:message
 							code="home.company" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.city}" type="text" /> <span><s:message
 							code="home.city" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.street}" type="text" /> <span><s:message
 							code="home.street" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.homeNumber}" type="text" /> <span><s:message
 							code="home.home" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.postal}" type="text" /> <span><s:message
 							code="home.postal" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.nip}" type="text" /> <span><s:message
 							code="home.nip" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.contactPhone}" type="text" /> <span><s:message
 							code="home.contactPhone" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+					<input class="inv-input-med" value="${newInvoice.faxPhone}" type="text" /> <span><s:message
 							code="home.faxPhone" /></span>
 				</div>
 
@@ -169,8 +194,11 @@
 						code="newInvoice.checkCustomer" /></a>
 
 			</div>
-
 		</div>
+		
+		<button class="btn btn-default login-button">
+				<s:message code="newInvoice.next" />
+		</button>
 
 	</form>
 </div>

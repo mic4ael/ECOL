@@ -40,7 +40,10 @@ public class ProductRow extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "referenced_discount_id")
 	private Discount discount;
-
+	
+	@Column(name = "referenced_product_amount")
+	private Integer amount;
+	
 	public Long getId() {
 		return id;
 	}
@@ -72,5 +75,13 @@ public class ProductRow extends AbstractEntity {
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, SHORT_PREFIX_STYLE);
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 }

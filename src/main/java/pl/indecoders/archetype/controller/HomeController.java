@@ -20,7 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.indecoders.archetype.form.account.PersonalInformationsForm;
+import pl.indecoders.archetype.form.account.PersonalInformationForm;
 import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.account.ProfileService;
 
@@ -50,7 +50,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = HOME_PATH, method = POST)
-	public String updatePersonalInformations(@Valid @ModelAttribute(PERSONAL_INFORMATIONS_FORM) PersonalInformationsForm form, final Model model, final Principal principal) {
+	public String updatePersonalInformations(@Valid @ModelAttribute(PERSONAL_INFORMATIONS_FORM) PersonalInformationForm form, final Model model, final Principal principal) {
 		profileService.processPersonalInformationsForm(form, userContext.getSignedUser(principal));
 		model.addAttribute(PERSONAL_INFORMATIONS_FORM, profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal)));
 		model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));

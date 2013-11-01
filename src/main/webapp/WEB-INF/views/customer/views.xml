@@ -9,4 +9,7 @@
 	<definition name="customersList" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/customer/list.jsp"></put-attribute>
 	</definition>
+	<definition name="editCustomer" extends="default">
+		<put-attribute name="body" value="/WEB-INF/views/customer/edit.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
