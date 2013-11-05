@@ -49,15 +49,14 @@
 		
 			<form:form modelAttribute="editedGroup" method="post" action="${pageContext.request.contextPath }/product-groups/${id}/edit">
 				
-				<form:errors path="name" element="span" class="merit-error"/>
-				
+				<span class="merit-error">${errorname}</span>
 				<div class="input-row">
 					<form:input path="name" value="${editedGroup.name}" type="text"
 						class="merit-input-med" placeholder="${groupName}" />
 				</div>
 	
 				<div class="input-row">
-				<form:errors path="specification" element="span" class="merit-error"/>
+				<span class="merit-error">${specerror}</span>
 					<form:textarea path="specification" type="text"
 						class="merit" placeholder="${groupSpecif}"></form:textarea>
 				</div>

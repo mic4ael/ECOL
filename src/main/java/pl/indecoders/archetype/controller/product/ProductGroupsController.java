@@ -2,15 +2,16 @@ package pl.indecoders.archetype.controller.product;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static pl.indecoders.archetype.navigation.Navigator.CURRENTLY_EDITED_GROUP_ID;
 import static pl.indecoders.archetype.navigation.Navigator.EDITED_GROUP_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.GROUPS_COUNT_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.GROUPS_PAGES_COUNT;
 import static pl.indecoders.archetype.navigation.Navigator.GROUP_FORM_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.GROUP_LIST_ATTRIBUTE;
+import static pl.indecoders.archetype.navigation.Navigator.GROUP_REDIRECT_ON_ERROR;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUPS_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_GROUP_REDIRECT;
-import static pl.indecoders.archetype.navigation.Navigator.CURRENTLY_SIGNED;
 
 import java.util.List;
 
@@ -56,26 +57,23 @@ public class ProductGroupsController {
 	
 	@ModelAttribute(GROUPS_COUNT_ATTRIBUTE) 
 	public Long countProductGroups() {
-		return productGroupRepository.countByOwner(userContext.getSignedUser());
+		return productGroupRepository.countByOwnerAndIsActive(userContext.getSignedUser(), true);
 	}
 	
 	@ModelAttribute(GROUPS_PAGES_COUNT)
 	public Integer groupsPageCount() {
-		return new PaginationUtils(RESULTS_ON_PAGE).numberOfPages(productGroupRepository.countByOwner(userContext.getSignedUser()));
+		return new PaginationUtils(RESULTS_ON_PAGE).numberOfPages(productGroupRepository.countByOwnerAndIsActive(userContext.getSignedUser(), true));
 	}
 	
 	@ModelAttribute(GROUP_LIST_ATTRIBUTE)
 	public List<ProductGroup> sendGroups() {
-		return productGroupRepository.findByOwner(userContext.getSignedUser());
+		return productGroupRepository.findByOwnerAndIsActive(userContext.getSignedUser(), true);
 	}
 	
 	@RequestMapping(value = PRODUCT_GROUPS_PATH + "/{page}", method = GET)
 	public String showProductGroupsPage(final Model model, final HttpSession session, @PathVariable Integer page) {
 		model.addAttribute(GROUP_FORM_ATTRIBUTE, new NewProductGroupForm());
 		model.addAttribute(GROUP_LIST_ATTRIBUTE, productGroupService.getProductGroupsPerPage(userContext.getSignedUser(), page - 1, RESULTS_ON_PAGE));
-		
-		if (session.getAttribute(CURRENTLY_SIGNED) == null)
-			session.setAttribute(CURRENTLY_SIGNED, userContext.getSignedUser());
 		
 		return PRODUCT_GROUPS_VIEW;
 	}
@@ -87,7 +85,7 @@ public class ProductGroupsController {
 			final HttpSession session, RedirectAttributes ra) {
 		
 		if (result.hasErrors()) {
-			return PRODUCT_GROUPS_VIEW;
+			return  PRODUCT_GROUPS_VIEW;
 		}
 		
 		productGroupService.persistProductGroup(form, userContext.getSignedUser());
@@ -105,9 +103,11 @@ public class ProductGroupsController {
 	/* Editing */
 
 	@RequestMapping(value = PRODUCT_GROUPS_PATH + "/" + "{id}" + "/" + "edit", method = GET)
-	public String editProductGroup(@PathVariable Long id, final Model model) {
+	public String editProductGroup(@PathVariable Long id, final Model model, final HttpSession session) {
 		model.addAttribute(EDITED_GROUP_ATTRIBUTE, productGroupRepository.findOne(id));
 		model.addAttribute(GROUP_FORM_ATTRIBUTE, new EditionProductGroupForm());
+		
+		session.setAttribute(CURRENTLY_EDITED_GROUP_ID, id);
 		
 		return PRODUCT_GROUPS_VIEW;
 	}
@@ -117,7 +117,13 @@ public class ProductGroupsController {
 			@PathVariable Long id, RedirectAttributes ra) {
 		
 		if(result.hasErrors()) {
-			return PRODUCT_GROUPS_VIEW;
+			if (result.getFieldError("name") != null)
+				ra.addFlashAttribute("errorname", result.getFieldError("name").getDefaultMessage());
+			
+			if (result.getFieldError("specification") != null)
+				ra.addFlashAttribute("specerror", result.getFieldError("specification").getDefaultMessage());
+			
+			return String.format(GROUP_REDIRECT_ON_ERROR, new Object[] {id});
 		}
 		
 		productGroupService.editProductGroup(id, form);

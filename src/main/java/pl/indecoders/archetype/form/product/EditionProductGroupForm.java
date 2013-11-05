@@ -16,11 +16,11 @@ import pl.indecoders.archetype.validation.annotation.UniqueGroupName;
 public class EditionProductGroupForm {
 
 	@NotEmpty
-	@Size(max=255, message="The value of this field can not be larger than 255")
+	@Size(max=255, message="{group.maxsize}")
 	@UniqueGroupName
 	private String name;
 	
-	@Size(max=255, message="The value of this field can not be larger than 255")
+	@Size(max=255, message="{group.maxsize}")
 	private String specification;
 	
 	public String getName() {

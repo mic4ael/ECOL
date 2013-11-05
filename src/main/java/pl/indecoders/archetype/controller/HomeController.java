@@ -43,7 +43,6 @@ public class HomeController {
 			model.addAttribute(PERSONAL_INFORMATIONS_FORM, profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal)));
 			model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));
 			
-			// session.setAttribute(CURRENTLY_SIGNED, userContext.getSignedUser()); czy takie rozwiązanie nie byłoby lepsze?
 			return HOME_VIEW;
 		}
 		return LOGIN_VIEW;

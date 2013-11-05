@@ -16,11 +16,11 @@ import pl.indecoders.archetype.domain.product.ProductGroup;
  */
 public interface ProductGroupRepository extends JpaRepository<ProductGroup, Long>, JpaSpecificationExecutor<ProductGroup> {
 	
-	public ProductGroup findByOwnerAndName(final Account owner, final String name);
-	public List<ProductGroup> findByOwner(final Account owner);
-	public List<ProductGroup> findByOwner(final Pageable req, final Account owner);
+	public ProductGroup findByOwnerAndNameAndIsActive(final Account owner, final String name, final boolean isActive);
+	public List<ProductGroup> findByOwnerAndIsActive(final Account owner, boolean isActive);
+	public List<ProductGroup> findByOwnerAndIsActive(final Pageable req, final Account owner, final boolean isActive);
 	public ProductGroup findByName(final String name);
 	
-	@Query("select count(p) from ProductGroup p where p.owner = ?1")
-	public Long countByOwner(final Account owner);
+	@Query("select count(p) from ProductGroup p where p.owner = ?1 and p.isActive = ?2")
+	public Long countByOwnerAndIsActive(final Account owner, final boolean isActive);
 }

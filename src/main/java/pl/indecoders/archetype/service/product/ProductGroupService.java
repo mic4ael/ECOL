@@ -7,10 +7,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import pl.indecoders.archetype.domain.account.Account;
+import pl.indecoders.archetype.domain.product.Product;
 import pl.indecoders.archetype.domain.product.ProductGroup;
 import pl.indecoders.archetype.form.product.EditionProductGroupForm;
 import pl.indecoders.archetype.form.product.NewProductGroupForm;
 import pl.indecoders.archetype.repository.product.ProductGroupRepository;
+import pl.indecoders.archetype.repository.product.ProductRepository;
 
 /**
  * The Class ProductGroupService.
@@ -18,7 +20,10 @@ import pl.indecoders.archetype.repository.product.ProductGroupRepository;
  */
 @Service
 public class ProductGroupService {
-
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
 	@Autowired
 	private ProductGroupRepository productGroupRepository;
 	
@@ -27,17 +32,33 @@ public class ProductGroupService {
 		group.setName(form.getName());
 		group.setSpecification(form.getSpecification() != null ? form.getSpecification() : null);
 		group.setOwner(owner);
+		group.setIsActive(true);
 		
 		productGroupRepository.save(group);
 	}
 	
+	private void removeProducts(ProductGroup group) {
+		List<Product> productsToRemove = productRepository.findByGroupAndIsVisible(group, true);
+		
+		for(Product p : productsToRemove) {
+			p.setIsVisible(false);
+		}
+			
+		productRepository.save(productsToRemove);
+	}
+	
 	public void removeProductGroup(final Long id) {
-		productGroupRepository.delete(id);
+		ProductGroup groupToRemove = productGroupRepository.findOne(id);
+		
+		removeProducts(groupToRemove);
+		
+		groupToRemove.setIsActive(false);
+		productGroupRepository.save(groupToRemove);
 	}
 	
 	public List<ProductGroup> getProductGroupsPerPage(final Account owner, final int pageIndex, final int itemsPerPage) {
 		final PageRequest request = new PageRequest(pageIndex, itemsPerPage);
-		return productGroupRepository.findByOwner(request, owner);
+		return productGroupRepository.findByOwnerAndIsActive(request, owner, true);
 	}
 	
 	public void editProductGroup(final Long id, final EditionProductGroupForm form) {

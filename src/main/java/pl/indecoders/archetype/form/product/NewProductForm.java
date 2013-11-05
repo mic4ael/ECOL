@@ -7,8 +7,12 @@ import static org.springframework.format.annotation.NumberFormat.Style.NUMBER;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.NumberFormat;
 
 import pl.indecoders.archetype.domain.product.ProductGroup;
@@ -20,8 +24,12 @@ import pl.indecoders.archetype.domain.product.Unit;
  * @author Mateusz
  */
 public class NewProductForm {
-
+	
+	@NotEmpty
+	@Size(max=255)
 	private String productName;
+	
+	@Size(max=255)
 	private String productSpecification;
 	
 	@NumberFormat(style = NUMBER)
@@ -33,9 +41,11 @@ public class NewProductForm {
 	@Column(name = "product_unit")
 	private Unit productUnit;
 	
+	@NotNull(message="{product.initialBasePrice}")
+	@DecimalMax(value="9999999999999999", message="{product.maxsize}")
 	@NumberFormat(style = CURRENCY)
 	private BigDecimal basePrice;
-
+	
 	private ProductGroup group;
 
 	public String getProductName() {

@@ -27,7 +27,7 @@ public class ProductGroupConverter implements Converter<String, ProductGroup> {
 	
 	@Override
 	public ProductGroup convert(String source) {
-		for(ProductGroup group : productGroupRepository.findByOwner((Account) session.getAttribute(CURRENTLY_SIGNED))) {
+		for(ProductGroup group : productGroupRepository.findByOwnerAndIsActive((Account) session.getAttribute(CURRENTLY_SIGNED), true)) {
 			if(group.getName().equalsIgnoreCase(source)) {
 				return group;
 			}

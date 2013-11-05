@@ -1,6 +1,5 @@
 package pl.indecoders.archetype.domain.product;
 
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
@@ -65,7 +64,7 @@ public class Product extends AbstractEntity {
 	@NumberFormat(style = CURRENCY)
 	private BigDecimal basePrice;
 	
-	@ManyToOne(cascade = ALL, fetch = EAGER)
+	@ManyToOne(fetch = EAGER)
 	@JoinColumn(name = "product_owner_id")
 	private Account owner;
 

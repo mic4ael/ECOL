@@ -26,7 +26,7 @@ public class Navigator {
 	public static final String PRODUCTS_LIST_PATH = "/products-list";
 	public static final String CUSTOMERS_LIST_PATH = "/customers-list";
 	public static final String PRODUCT_GROUPS_PATH = "/product-groups";
-	
+	public static final String GROUP_REDIRECT_ON_ERROR = "redirect:/product-groups/%d/edit";
 	public static final String NEW_INVOICE_PATH = "/new-invoice";
 	public static final String INVOICES_LIST_PATH = "/invoices-list";
 	
@@ -61,13 +61,16 @@ public class Navigator {
 	public static final String CURRENTLY_SIGNED = "signedUser";
 	
 	public static final String PRODUCT_COUNT_ATTRIBUTE = "productsCount";
+	public static final String PRODUCTS_LIST = "productsList";
 	
 	public static final String GROUPS_COUNT_ATTRIBUTE = "groupsCount";
 	public static final String GROUP_FORM_ATTRIBUTE = "groupForm";
 	public static final String GROUP_LIST_ATTRIBUTE = "groupList";
 	public static final String GROUPS_PAGES_COUNT = "groupPagesCount";
 	public static final String EDITED_GROUP_ATTRIBUTE = "editedGroup";
+	public static final String CURRENTLY_EDITED_GROUP_ID = "currentlyEditedGroupId";
 	
+	public static final String NEW_PRODUCT_REDIRECT = "redirect:/new-product";
 	public static final String NEW_PRODUCT_FORM_ATTRIBUTE = "newProduct";
 	public static final String NEW_PRODUCT_ATTRIBUTES = "productAttributes";
 	
