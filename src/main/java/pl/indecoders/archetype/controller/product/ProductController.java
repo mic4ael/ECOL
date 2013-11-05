@@ -52,7 +52,7 @@ public class ProductController {
 	
 	@ModelAttribute(PRODUCT_COUNT_ATTRIBUTE)
 	public Long countProducts() {
-		return productRepository.countByOwner(userContext.getSignedUser());
+		return productRepository.countByOwnerAndIsVisible(userContext.getSignedUser(), true);
 	}
 	
 	@ModelAttribute(PRODUCTS_LIST)
