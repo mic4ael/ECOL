@@ -6,6 +6,11 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <div class="page_view">
+	<c:if test="${message != null}">
+		<div id="message" style="text-align: center; postion: absolute; top: 100px; margin: 0 auto;" class="alert alert-success">
+			<s:message code="operation.success"/>
+		</div>
+	</c:if>
 
 	<p>
 		<strong><s:message code="newProduct.helloSlogan" arguments="${productsCount}" /></strong>
@@ -70,4 +75,7 @@
 		
 	</form:form>
 	<script type="text/javascript" src="<c:url value="resources/js/newProduct.js"/>"></script>
+	<script type="text/javascript">
+		$('#message').fadeOut(4000);
+	</script>
 </div>

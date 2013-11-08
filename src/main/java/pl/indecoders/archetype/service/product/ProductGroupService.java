@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
+import static pl.indecoders.archetype.utils.SortTranslationUtils.translateDirection;
 import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.domain.product.Product;
 import pl.indecoders.archetype.domain.product.ProductGroup;
@@ -59,6 +59,12 @@ public class ProductGroupService {
 	public List<ProductGroup> getProductGroupsPerPage(final Account owner, final int pageIndex, final int itemsPerPage) {
 		final PageRequest request = new PageRequest(pageIndex, itemsPerPage);
 		return productGroupRepository.findByOwnerAndIsActive(request, owner, true);
+	}
+	
+	public List<ProductGroup> getSortedAndPagedProducts(final Account owner, final int pageIndex, final int perPage, final String sortDir, final String sortField) {
+		final PageRequest req = new PageRequest(pageIndex, perPage, translateDirection(sortDir), sortField);
+		
+		return productGroupRepository.findByOwnerAndIsActive(req, owner, true);
 	}
 	
 	public void editProductGroup(final Long id, final EditionProductGroupForm form) {

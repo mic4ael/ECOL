@@ -24,6 +24,8 @@ public class Navigator {
 	public static final String NEW_PRODUCT_PATH = "/new-product";
 	public static final String NEW_CUSTOMER_PATH = "/new-customer";
 	public static final String PRODUCTS_LIST_PATH = "/products-list";
+	public static final String EDIT_PRODUCT_PATH = "/products";
+	public static final String REMOVE_PRODUCT_PATH = "/products";
 	public static final String CUSTOMERS_LIST_PATH = "/customers-list";
 	public static final String PRODUCT_GROUPS_PATH = "/product-groups";
 	public static final String GROUP_REDIRECT_ON_ERROR = "redirect:/product-groups/%d/edit";
@@ -67,6 +69,7 @@ public class Navigator {
 	public static final String GROUP_FORM_ATTRIBUTE = "groupForm";
 	public static final String GROUP_LIST_ATTRIBUTE = "groupList";
 	public static final String GROUPS_PAGES_COUNT = "groupPagesCount";
+	public static final String PRODUCT_PAGES_COUNT = "productPagesCount";
 	public static final String EDITED_GROUP_ATTRIBUTE = "editedGroup";
 	public static final String CURRENTLY_EDITED_GROUP_ID = "currentlyEditedGroupId";
 	
