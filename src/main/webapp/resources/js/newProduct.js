@@ -1,0 +1,1 @@
+var productName = document.getElementById("productName");

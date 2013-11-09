@@ -64,7 +64,7 @@
 					<ul class="dropdown-menu custom-font account-menu">
 						<li><a href='<s:url value="/new-product"/>'><s:message code="headerMenu.products.new" /></a></li>
 						<li><a href='<s:url value="/products-list"/>'><s:message code="headerMenu.products.list" /></a></li>
-						<li><a href='<s:url value="/product-groups"/>'><s:message code="headerMenu.products.group" /></a></li>
+						<li><a href='<s:url value="/product-groups/1"/>'><s:message code="headerMenu.products.group" /></a></li>
 					</ul></li>
 
 				<li class="dropdown"><a href="#" class="dropdown-toggle"

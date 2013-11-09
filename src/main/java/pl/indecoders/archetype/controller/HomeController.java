@@ -42,6 +42,7 @@ public class HomeController {
 		if(principal != null) {
 			model.addAttribute(PERSONAL_INFORMATIONS_FORM, profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal)));
 			model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));
+			
 			return HOME_VIEW;
 		}
 		return LOGIN_VIEW;

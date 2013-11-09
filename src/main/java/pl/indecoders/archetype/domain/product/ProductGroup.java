@@ -43,6 +43,9 @@ public class ProductGroup extends AbstractEntity {
 	@JoinColumn(name = "group_owner_id")
 	private Account owner;
 	
+	@Column(name = "is_active")
+	private boolean isActive;
+	
 	public Long getId() {
 		return id;
 	}
@@ -77,6 +80,14 @@ public class ProductGroup extends AbstractEntity {
 	
 	public ProductGroup() {
 		super(now(UTC));
+	}
+	
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
+	public boolean getIsActive() {
+		return isActive;
 	}
 
 	@Override

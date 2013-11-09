@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.domain.product.Product;
+import pl.indecoders.archetype.domain.product.ProductGroup;
 
 /**
  * The Interface ProductRepository.
@@ -19,7 +20,13 @@ import pl.indecoders.archetype.domain.product.Product;
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
 	
 	public List<Product> findByOwner(final Account owner);
+	public List<Product> findByOwnerAndIsVisible(final Account owner, final boolean isVisible);
+	public List<Product> findByGroupAndIsVisible(final ProductGroup group, final boolean isVisible);
+	public List<Product> findByOwnerAndIsVisible(Pageable req, Account owner, boolean isVisible);
 	
 	@Query("select count(p) from Product p where p.owner = ?1")
 	public Long countByOwner(final Account owner);
+	
+	@Query("select count(p) from Product p where p.owner = ?1 and p.isVisible=?2")
+	public Long countByOwnerAndIsVisible(final Account owner, final boolean isVisible);
 }

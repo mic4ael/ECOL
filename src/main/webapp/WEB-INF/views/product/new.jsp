@@ -6,19 +6,25 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <div class="page_view">
+	<c:if test="${message != null}">
+		<div id="message" style="text-align: center; postion: absolute; top: 100px; margin: 0 auto;" class="alert alert-success">
+			<s:message code="operation.success"/>
+		</div>
+	</c:if>
 
 	<p>
 		<strong><s:message code="newProduct.helloSlogan" arguments="${productsCount}" /></strong>
 	</p>
 
 	<form:form modelAttribute="newProduct" method="post">
-
+			<form:errors path="productName" element="span" class="merit-error"/>
 			<div class="input-row">
 				<form:input path="productName" type="text"
 					class="merit-input-med" />
 				<span class="input-label"><s:message code="newProduct.name" /></span>
 			</div>
 		
+			<form:errors path="productSpecification" element="span" class="merit-error"/>
 			<div class="input-row">
 				<form:input path="productSpecification" type="text"
 					class="merit-input-med" />
@@ -30,7 +36,6 @@
 					<form:options items="${productAttributes.productTypes}"/>
 				</form:select>
 				<span class="input-label"><s:message code="newProduct.type" /></span>
-				
 			</div>
 			
 			<div class="input-row">
@@ -41,12 +46,13 @@
 			</div>
 			
 			<div class="input-row">
-				<form:select path="group" class="merit-input-sm">
+				<form:select path="group.name" class="merit-input-sm">
 					<form:options items="${productAttributes.groups}"/>
 				</form:select>
 				<span class="input-label"><s:message code="newProduct.group" /></span>
 			</div>
 			
+			<form:errors path="basePrice" element="span" class="merit-error"/>
 			<div class="input-row">
 				<form:input path="basePrice" type="text"
 					class="merit-input-mini" />
@@ -68,5 +74,8 @@
 			</button>
 		
 	</form:form>
-
+	<script type="text/javascript" src="<c:url value="resources/js/newProduct.js"/>"></script>
+	<script type="text/javascript">
+		$('#message').fadeOut(4000);
+	</script>
 </div>
