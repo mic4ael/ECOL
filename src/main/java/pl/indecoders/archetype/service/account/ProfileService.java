@@ -8,6 +8,7 @@ import pl.indecoders.archetype.domain.account.Profile;
 import pl.indecoders.archetype.domain.address.Address;
 import pl.indecoders.archetype.domain.payment.BankInformations;
 import pl.indecoders.archetype.form.account.PersonalInformationForm;
+import pl.indecoders.archetype.form.invoice.SellerForm;
 import pl.indecoders.archetype.repository.accout.AccountRepository;
 
 /**
@@ -42,6 +43,7 @@ public class ProfileService {
 		form.setContactPhone(profile.getContactPhone() != null ? profile.getContactPhone() : "");
 		form.setNip(profile.getNip() != null ? profile.getNip() : "");
 		form.setFaxPhone(profile.getFaxPhone() != null ? profile.getFaxPhone() : "");
+		form.setEmail(profile.getEmail() != null ? profile.getEmail() : "");
 	}
 
 	private void prepareAddressInformations(Profile profile, PersonalInformationForm form) {
@@ -75,7 +77,8 @@ public class ProfileService {
 		profile.setNip(form.getNip() != null ? form.getNip() : null);
 		profile.setContactPhone(form.getContactPhone() != null ? form.getContactPhone() : null);
 		profile.setFaxPhone(form.getFaxPhone() != null ? form.getFaxPhone() : null);
-
+		profile.setEmail(form.getEmail() != null ? form.getEmail() : null);
+		
 		if(form.getCity() != null || form.getStreet() != null || form.getHomeNumber() != null || form.getPostal() != null) {
 			processAddressInformations(profile, form);
 		}
@@ -104,4 +107,7 @@ public class ProfileService {
 		profile.setBankInformations(bankInformations);
 	}
 
+	public void findProfileOrCreate(final SellerForm form) {
+		
+	}
 }

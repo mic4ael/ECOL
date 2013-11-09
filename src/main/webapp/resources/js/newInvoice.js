@@ -1,5 +1,6 @@
 var creationDate = $('input#creationDatePicker');
 var soldDate = $('input#soldDatePicker');
+var paymentDate = $('input#paymentDate');
 
 var searchCustomerButton = $('a#searchCustomer');
 var searchCustomerModal = $('div#searchCustomerModal');
@@ -7,12 +8,26 @@ var customersTableBody = $('tbody#customersJsonList');
 var customersModalCloser = $('button#customersModalCloser');
 var searchCustomerInput = $('input#searchCustomerInput');
 
+var searchProductButton = $('product-model-trigger');
+
+/* Customer form handlers */
+
+var customerName = $('input#customer-name');
+var customerCity = $('input#customer-city');
+var customerStreet = $('input#customer-street');
+var customerPostal = $('input#customer-postal');
+var customerHome = $('input#customer-home');
+var customerNip = $('input#customer-nip');
+var customerContactPhone = $('input#customer-contactPhone');
+var customerFaxPhone = $('input#customer-faxPhone');
+var customerEmail = $('input#customer-email');
+
 $(document).ready(function() {
 	
 	/* Date pickers */
 	
 	initDatePickers();
-	
+
 	/* Search customer */
 	
 	initSearchCustomerModal();
@@ -25,6 +40,9 @@ function initDatePickers() {
 		dateFormat: "dd - mm - yy"
 	});
 	soldDate.datepicker({
+		dateFormat: "dd - mm - yy"
+	});
+	paymentDate.datepicker({
 		dateFormat: "dd - mm - yy"
 	});
 }
@@ -74,9 +92,39 @@ function prepareCustomerRows(data) {
 
 function initCustomerRowListener() {
 	$(document).on('click', 'tbody#customersJsonList tr', function() {
-		rowChildren = $(this).children();
-		console.log(rowChildren[0].html());
+		var hiddenTd = $(this).find('td:first').html();
+		getJsonAndPrepareForm(hiddenTd);
 	});
+}
+
+function getJsonAndPrepareForm(hiddenTd) {
+	$.ajax({
+		type : "POST",
+		url : "customerJson",
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		data : hiddenTd,
+		success : function(data) {
+			prepareCustomerForm(data);
+		},
+		failure : function(errMsg) {
+			console.log('newInvoice.js : getJsonAndPrepareForm(hiddenTd) : post failure');
+		}
+	});
+}
+
+function prepareCustomerForm(customerInfo) {
+	customerName.val(customerInfo.name);
+	customerCity.val(customerInfo.address.city);
+	customerStreet.val(customerInfo.address.street);
+	customerPostal.val(customerInfo.address.postalCode);
+	customerHome.val(customerInfo.address.homeNumber);
+	customerNip.val(customerInfo.nip);
+	customerContactPhone.val(customerInfo.contactPhone);
+	customerFaxPhone.val(customerInfo.faxPhone);
+	customerEmail.val(customerInfo.email);
+	
+	searchCustomerModal.modal('hide');
 }
 
 function initCustomerFilter() {

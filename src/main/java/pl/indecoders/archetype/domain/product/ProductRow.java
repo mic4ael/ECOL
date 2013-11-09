@@ -1,12 +1,12 @@
 package pl.indecoders.archetype.domain.product;
 
+import static javax.persistence.FetchType.EAGER;
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -33,11 +33,11 @@ public class ProductRow extends AbstractEntity {
 	@GeneratedValue(generator = "ProductRow_SEQUENCE")
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = EAGER)
 	@JoinColumn(name = "referenced_product_id")
 	private Product product;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = EAGER)
 	@JoinColumn(name = "referenced_discount_id")
 	private Discount discount;
 	

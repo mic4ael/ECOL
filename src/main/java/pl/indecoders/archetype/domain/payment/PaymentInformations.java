@@ -4,7 +4,6 @@ import static javax.persistence.EnumType.STRING;
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
-import static org.springframework.format.annotation.NumberFormat.Style.NUMBER;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.springframework.format.annotation.NumberFormat;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 import pl.indecoders.archetype.domain.AbstractEntity;
 
@@ -37,9 +37,9 @@ public class PaymentInformations extends AbstractEntity {
 	@Enumerated(STRING)
 	private PaymentType type;
 	
-	@Column(name = "payment_time")
-	@NumberFormat(style = NUMBER)
-	private Integer paymentTime;
+	@Column(name = "payment_date")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	protected DateTime paymentDate;
 
 	public Long getId() {
 		return id;
@@ -57,12 +57,12 @@ public class PaymentInformations extends AbstractEntity {
 		this.type = type;
 	}
 
-	public Integer getPaymentTime() {
-		return paymentTime;
+	public DateTime getPaymentDate() {
+		return paymentDate;
 	}
 
-	public void setPaymentTime(Integer paymentTime) {
-		this.paymentTime = paymentTime;
+	public void setPaymentDate(DateTime paymentDate) {
+		this.paymentDate = paymentDate;
 	}
 
 	public PaymentInformations() {

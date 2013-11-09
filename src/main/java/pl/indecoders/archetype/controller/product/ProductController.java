@@ -2,6 +2,7 @@ package pl.indecoders.archetype.controller.product;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static pl.indecoders.archetype.navigation.Navigator.GET_PRODUCTS_JSON;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_PRODUCT_ATTRIBUTES;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_PRODUCT_FORM_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_PRODUCT_PATH;
@@ -9,6 +10,8 @@ import static pl.indecoders.archetype.navigation.Navigator.NEW_PRODUCT_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCTS_LIST_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCTS_LIST_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_COUNT_ATTRIBUTE;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -18,13 +21,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import pl.indecoders.archetype.domain.product.Product;
 import pl.indecoders.archetype.form.product.NewProductForm;
 import pl.indecoders.archetype.repository.product.ProductRepository;
 import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.product.ProductService;
+import pl.indecoders.archetype.specification.product.ProductSpecifications;
 
 /**
  * The Class ProductController.
@@ -71,5 +78,13 @@ public class ProductController {
 	@RequestMapping(value = PRODUCTS_LIST_PATH, method = GET)
 	public String showProductsListPage() {
 		return PRODUCTS_LIST_VIEW;
+	}
+	
+	/* Customers list in JSon */
+	
+	@ResponseBody
+	@RequestMapping(value = "new-invoice/" + GET_PRODUCTS_JSON, method = POST)
+	public List<Product> getProductsJson(@RequestBody String pattern) {
+		return productRepository.findAll(ProductSpecifications.containsPattern(pattern, userContext.getSignedUser()));
 	}
 }

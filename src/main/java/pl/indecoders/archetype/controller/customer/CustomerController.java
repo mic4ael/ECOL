@@ -168,6 +168,8 @@ public class CustomerController {
 		return customerRepository.findAll(hasOwnerAndFiltered(userContext.getSignedUser(), pattern));
 	}
 	
+	/* Customer JSON by given id */
+	
 	@ResponseBody
 	@RequestMapping(value = GET_PROPER_CUSTOMER_JSON, method = POST)
 	public Customer getCustomerJson(@RequestBody Long id) {

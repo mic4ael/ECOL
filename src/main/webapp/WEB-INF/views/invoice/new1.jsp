@@ -66,27 +66,31 @@
 		<strong><s:message code="newInvoice.title" /></strong>
 	</p>
 
-	<form>
+	<form:form modelAttribute="newInvoiceForm" method="post">
 
 		<div class="invoice-piece" style="height: 100px;">
+	
+			
 
 			<div class="container-small pull-left">
-				<span><s:message code="newInvoice.number" /></span> <input
+				<form:errors path="invoiceNumber" element="span" class="merit-error"></form:errors>
+				<span><s:message code="newInvoice.number" /></span> <form:input path="invoiceNumber"
 					type="text" value="${actualYear} / ${invoiceNumber}" class="inv-input-sm" />
 			</div>
 
 			<div class="container-small pull-left">
-				<span><s:message code="newInvoice.city" /></span> <input
+			<form:errors path="invoiceCity" element="span" class="merit-error"></form:errors>
+				<span><s:message code="newInvoice.city" /></span> <form:input path="invoiceCity"
 					type="text" value="${newInvoice.city}" class="inv-input-sm" />
 			</div>
 
-			<div class="container-small pull-left">
-				<span><s:message code="newInvoice.creationDate" /></span> <input
+			<div class="container-small pull-right">
+				<span><s:message code="newInvoice.creationDate" /></span> <form:input path="creationDate"
 					id="creationDatePicker" value="${actualDate}" type="text" class="inv-input-sm" />
 			</div>
 
-			<div class="container-small pull-left">
-				<span><s:message code="newInvoice.soldDate" /></span> <input
+			<div class="container-small pull-right">
+				<span><s:message code="newInvoice.soldDate" /></span> <form:input path="soldDate"
 					id="soldDatePicker" value="${actualDate}" type="text" class="inv-input-sm" />
 			</div>
 
@@ -94,52 +98,66 @@
 
 		<!-- Information about customer and seller -->
 
-		<div style="height: 390px;" class="invoice-piece">
+		<div style="height: 420px;" class="invoice-piece">
 
 			<div class="invoice-piece-left">
 
 				<p>
-					<s:message code="newInvoice.seller" />
+					<strong><s:message code="newInvoice.seller" /></strong>
 				</p>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.name}" type="text" /> <span><s:message
+				<form:errors path="seller.name" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.name" class="inv-input-med" value="${newInvoice.name}" type="text" /> <span><s:message
 							code="home.company" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.city}" type="text" /> <span><s:message
+				<form:errors path="seller.address.city" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.address.city" class="inv-input-med" value="${newInvoice.city}" type="text" /> <span><s:message
 							code="home.city" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.street}" type="text" /> <span><s:message
+				<form:errors path="seller.address.street" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.address.street" class="inv-input-med" value="${newInvoice.street}" type="text" /> <span><s:message
 							code="home.street" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.homeNumber}" type="text" /> <span><s:message
+				<form:errors path="seller.address.homeNumber" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.address.homeNumber" class="inv-input-med" value="${newInvoice.homeNumber}" type="text" /> <span><s:message
 							code="home.home" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.postal}" type="text" /> <span><s:message
+				<form:errors path="seller.address.postalCode" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.address.postalCode" class="inv-input-med" value="${newInvoice.postal}" type="text" /> <span><s:message
 							code="home.postal" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.nip}" type="text" /> <span><s:message
+				<form:errors path="seller.nip" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.nip" class="inv-input-med" value="${newInvoice.nip}" type="text" /> <span><s:message
 							code="home.nip" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.contactPhone}" type="text" /> <span><s:message
+				<form:errors path="seller.contactPhone" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.contactPhone" class="inv-input-med" value="${newInvoice.contactPhone}" type="text" /> <span><s:message
 							code="home.contactPhone" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" value="${newInvoice.faxPhone}" type="text" /> <span><s:message
+				<form:errors path="seller.faxPhone" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.faxPhone" class="inv-input-med" value="${newInvoice.faxPhone}" type="text" /> <span><s:message
 							code="home.faxPhone" /></span>
+				</div>
+
+				<div class="container-med-flat">
+				<form:errors path="seller.email" element="span" class="merit-error"></form:errors>
+					<form:input path="seller.email" class="inv-input-med" value="${newInvoice.email}" type="text" /> <span><s:message
+							code="home.email" /></span>
 				</div>
 
 			</div>
@@ -147,47 +165,61 @@
 			<div class="invoice-piece-right">
 
 				<p>
-					<s:message code="newInvoice.customer" />
+					<strong><s:message code="newInvoice.customer" /></strong>
 				</p>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.name" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.name" id="customer-name" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.company" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.address.city" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.address.city" id="customer-city" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.city" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.address.street" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.address.street" id="customer-street" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.street" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.address.homeNumber" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.address.homeNumber" id="customer-home" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.home" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.address.postalCode" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.address.postalCode" id="customer-postal" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.postal" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.nip" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.nip" id="customer-nip" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.nip" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.contactPhone" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.contactPhone" id="customer-contactPhone" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.contactPhone" /></span>
 				</div>
 
 				<div class="container-med-flat">
-					<input class="inv-input-med" type="text" /> <span><s:message
+				<form:errors path="customer.faxPhone" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.faxPhone" id="customer-faxPhone" class="inv-input-med" type="text" /> <span><s:message
 							code="newInvoice.faxPhone" /></span>
+				</div>
+
+				<div class="container-med-flat">
+				<form:errors path="customer.email" element="span" class="merit-error"></form:errors>
+					<form:input path="customer.email" id="customer-email" class="inv-input-med" type="text" /> <span><s:message
+							code="home.email" /></span>
 				</div>
 
 				<a id="searchCustomer" style="cursor: pointer;"><s:message
@@ -196,11 +228,36 @@
 			</div>
 		</div>
 		
+		<div class="invoice-piece" style="height: 60px;">
+			
+			<form:errors path="seller.bankName" element="span" class="merit-error"></form:errors>
+			<span class="eco-info"><s:message code="newInvoice.bankName" /></span> <form:input
+				type="text" path="seller.bankName" value="${newInvoice.bankName}" class="inv-input-med" />
+
+			<form:errors path="seller.bankNumber" element="span" class="merit-error"></form:errors>
+			<span class="eco-info"><s:message code="newInvoice.bankNumber" /></span> <form:input
+				type="text" path="seller.bankNumber" value="${newInvoice.bankNumber}" class="inv-input-med" />
+
+		</div>
+		
+		<div class="invoice-piece" style="height: 60px;">
+	
+			<span class="eco-info"><s:message code="newInvoice.paymentType" /></span> 
+			<form:select class="inv-input-med" path="paymentType">
+				<form:option value="CASH"><s:message code="newInvoice.paymentType.cash" /></form:option>
+				<form:option value="TRANSFER"><s:message code="newInvoice.paymentType.transfer" /></form:option>
+			</form:select>
+
+			<span class="eco-info"><s:message code="newInvoice.paymentDate" /></span> <form:input
+				path="paymentDate" type="text" id="paymentDate" value="${actualDate}" class="inv-input-sm" />
+		
+		</div>
+		
 		<button class="btn btn-default login-button">
 				<s:message code="newInvoice.next" />
 		</button>
 
-	</form>
+	</form:form>
 </div>
 
 <script src="<c:url value="/resources/js/newInvoice.js" />"></script>

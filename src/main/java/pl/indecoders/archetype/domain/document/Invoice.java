@@ -1,5 +1,6 @@
 package pl.indecoders.archetype.domain.document;
 
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 import static org.joda.time.DateTime.now;
@@ -25,6 +26,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 import pl.indecoders.archetype.domain.AbstractEntity;
 import pl.indecoders.archetype.domain.account.Account;
+import pl.indecoders.archetype.domain.account.Profile;
 import pl.indecoders.archetype.domain.customer.Customer;
 import pl.indecoders.archetype.domain.payment.PaymentInformations;
 import pl.indecoders.archetype.domain.product.ProductRow;
@@ -66,9 +68,9 @@ public class Invoice extends AbstractEntity {
 	@JoinColumn(name = "payment_informations_id")
 	private PaymentInformations paymentInformations;
 	
-	@Column(name = "recipient_person")
-	private String recipientPerson;
-
+	@ManyToOne(fetch = EAGER, cascade = ALL)
+	private Profile differentSeller;
+	
 	public Long getId() {
 		return id;
 	}
@@ -125,14 +127,6 @@ public class Invoice extends AbstractEntity {
 		this.paymentInformations = paymentInformations;
 	}
 
-	public String getRecipientPerson() {
-		return recipientPerson;
-	}
-
-	public void setRecipientPerson(String recipientPerson) {
-		this.recipientPerson = recipientPerson;
-	}
-
 	public Invoice() {
 		super(now(UTC));
 	}
@@ -140,5 +134,13 @@ public class Invoice extends AbstractEntity {
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, SHORT_PREFIX_STYLE);
+	}
+
+	public Profile getDifferentSeller() {
+		return differentSeller;
+	}
+
+	public void setDifferentSeller(Profile differentSeller) {
+		this.differentSeller = differentSeller;
 	}
 }

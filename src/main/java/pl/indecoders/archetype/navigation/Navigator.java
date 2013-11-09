@@ -28,14 +28,13 @@ public class Navigator {
 	public static final String PRODUCT_GROUPS_PATH = "/product-groups";
 	
 	public static final String NEW_INVOICE_PATH = "/new-invoice";
+	public static final String NEW_INVOICE_PRODUCTS_PATH = "/products";
 	public static final String INVOICES_LIST_PATH = "/invoices-list";
 	
 	public static final String IS_CUSTOMER_AVAILABLE="/isCustomerAvailable";
 	public static final String GET_CUSTOMERS_JSON = "customersJson";
+	public static final String GET_PRODUCTS_JSON = "productsJson";
 	public static final String GET_PROPER_CUSTOMER_JSON = "customerJson";
-	
-	public static final String NEW_INVOICE_ATTRIBUTES = "newInvoice";
-	public static final String NEW_INVOICE_NUMBER_ATTRIBUTE = "invoiceNumber";
 	
 	/* Views */
 
@@ -51,6 +50,7 @@ public class Navigator {
 	public static final String EDIT_CUSTOMER_VIEW = "editCustomer";
 	
 	public static final String NEW_INVOICE_VIEW = "newInvoice";
+	public static final String NEW_INVOICE_PRODUCTS_VIEW = "newInvoiceStep2";
 	public static final String INVOICES_LIST_VIEW = "invoicesList";
 	
 	/* Attributes */
@@ -80,6 +80,15 @@ public class Navigator {
 	public static final String EDITED_CUSTOMER_ATTRIBUTE = "editedCustomer";
 	
 	public static final String OPERATION_SUCCESS = "success";
+	
+	public static final String NEW_INVOICE_FORM = "newInvoiceForm";
+	public static final String SESSION_STORED_INVOICE = "sessionStoredInvoice";
+	public static final String SESSION_STORED_PRODUCTS = "sessionStoredProducts";
+	
+	public static final String NEW_INVOICE_ATTRIBUTES = "newInvoice";
+	public static final String NEW_INVOICE_NUMBER_ATTRIBUTE = "invoiceNumber";
+	
+	public static final String PRODUCT_ROW_FORM_ATTRIBUTE = "productRow";
 	
 	/* Keys */
 	

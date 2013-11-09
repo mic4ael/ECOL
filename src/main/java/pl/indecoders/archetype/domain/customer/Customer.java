@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import pl.indecoders.archetype.domain.AbstractEntity;
 import pl.indecoders.archetype.domain.account.Account;
@@ -60,6 +61,7 @@ public class Customer extends AbstractEntity {
 	
 	@ManyToOne(fetch = EAGER)
 	@JoinColumn(name = "customer_owner_id")
+	@JsonIgnore
 	private Account owner;
 	
 	public Long getId() {

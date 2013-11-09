@@ -51,6 +51,9 @@ public class Profile extends AbstractEntity {
 	@Column(name = "fax_phone")
 	private String faxPhone;
 	
+	@Column(name = "email")
+	private String email;
+	
 	@OneToOne(cascade = ALL)
 	@JoinColumn(name = "bank_informations_id")
 	private BankInformations bankInformations;
@@ -118,5 +121,13 @@ public class Profile extends AbstractEntity {
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, SHORT_PREFIX_STYLE);
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
