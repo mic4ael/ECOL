@@ -39,10 +39,10 @@ public class CustomerService {
 
 	private Address createAddress(NewCustomerForm form) {
 		Address address = new Address();
-		address.setCity(form.getCity());
-		address.setPostalCode(form.getPostalCode());
-		address.setHomeNumber(form.getHomeNumber());
-		address.setStreet(form.getStreet());
+		address.setCity(form.getAddress().getCity());
+		address.setPostalCode(form.getAddress().getPostalCode());
+		address.setHomeNumber(form.getAddress().getHomeNumber());
+		address.setStreet(form.getAddress().getStreet());
 		return address;
 	}
 	
@@ -72,5 +72,9 @@ public class CustomerService {
 		customer.setEmail(form.getEmail() != null ? form.getEmail() : null);
 		customer.setIsVisible(true);
 		customerRepository.save(customer);
+	}
+	
+	public void findCustomerOrCreate(final NewCustomerForm form) {
+		
 	}
 }

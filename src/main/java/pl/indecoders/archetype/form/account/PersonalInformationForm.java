@@ -10,8 +10,6 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  */
 public class PersonalInformationForm {
 
-	//FIXME Validation!!!
-	
 	private String name;
 	private String city;
 	private String street;
@@ -20,6 +18,7 @@ public class PersonalInformationForm {
 	private String nip;
 	private String contactPhone;
 	private String faxPhone;
+	private String email;
 	private String bankName;
 	private String bankNumber;
 
@@ -106,5 +105,13 @@ public class PersonalInformationForm {
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, SHORT_PREFIX_STYLE);
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

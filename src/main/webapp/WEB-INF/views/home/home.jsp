@@ -68,6 +68,12 @@
 			</div>
 
 			<div class="input-row">
+				<form:input path="email" value="${personalInfos.email}"
+					type="text" class="merit-input-sm" />
+				<span class="input-label"><s:message code="home.email" /></span>
+			</div>
+
+			<div class="input-row">
 				<form:input path="bankName" value="${personalInfos.bankName}"
 					type="text" class="merit-input-med" />
 				<span class="input-label"><s:message code="home.bankName" /></span>

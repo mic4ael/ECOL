@@ -28,34 +28,34 @@
 				<span class="input-label"><s:message code="newCustomer.name" /></span>
 			</div>
 		
-			<form:errors path="city" element="span" class="merit-error"></form:errors>
+			<form:errors path="address.city" element="span" class="merit-error"></form:errors>
 		
 			<div class="input-row">
-				<form:input path="city" type="text"
+				<form:input path="address.city" type="text"
 					class="merit-input-med" />
 				<span class="input-label"><s:message code="newCustomer.city" /></span>
 			</div>
 			
-			<form:errors path="postalCode" element="span" class="merit-error"></form:errors>
+			<form:errors path="address.postalCode" element="span" class="merit-error"></form:errors>
 			
 			<div class="input-row">
-				<form:input path="postalCode" type="text"
+				<form:input path="address.postalCode" type="text"
 					class="merit-input-mini" />
 				<span class="input-label"><s:message code="newCustomer.postal" /></span>
 			</div>
 
-			<form:errors path="street" element="span" class="merit-error"></form:errors>
+			<form:errors path="address.street" element="span" class="merit-error"></form:errors>
 
 			<div class="input-row">
-				<form:input path="street" type="text"
+				<form:input path="address.street" type="text"
 					class="merit-input-med" />
 				<span class="input-label"><s:message code="newCustomer.street" /></span>
 			</div>
 			
-			<form:errors path="homeNumber" element="span" class="merit-error"></form:errors>
+			<form:errors path="address.homeNumber" element="span" class="merit-error"></form:errors>
 			
 			<div class="input-row">
-				<form:input path="homeNumber" type="text"
+				<form:input path="address.homeNumber" type="text"
 					class="merit-input-mini" />
 				<span class="input-label"><s:message code="newCustomer.home" /></span>
 			</div>

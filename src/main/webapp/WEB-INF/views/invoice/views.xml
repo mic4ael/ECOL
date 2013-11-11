@@ -6,7 +6,7 @@
 	<definition name="newInvoice" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/invoice/new1.jsp"></put-attribute>
 	</definition>
-	<definition name="newInvoice" extends="default">
+	<definition name="newInvoiceStep2" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/invoice/new2.jsp"></put-attribute>
 	</definition>
 	<definition name="invoicesList" extends="default">
