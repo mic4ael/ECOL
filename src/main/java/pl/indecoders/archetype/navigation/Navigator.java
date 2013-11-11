@@ -76,6 +76,7 @@ public class Navigator {
 	public static final String NEW_PRODUCT_REDIRECT = "redirect:/new-product";
 	public static final String NEW_PRODUCT_FORM_ATTRIBUTE = "newProduct";
 	public static final String NEW_PRODUCT_ATTRIBUTES = "productAttributes";
+	public static final String CURRENTLY_EDITED_PRODUCT_ID = "currentlyEditedProductId";
 	
 	public static final String NEW_CUSTOMER_FORM_ATTRIBUTE = "newCustomer";
 	public static final String CUSTOMER_COUNT_ATTRIBUTE = "customersCount";
