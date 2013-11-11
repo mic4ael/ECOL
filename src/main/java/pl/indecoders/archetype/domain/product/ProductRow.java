@@ -9,6 +9,7 @@ import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -118,11 +119,15 @@ public class ProductRow extends AbstractEntity {
 			return false;
 		} else {
 			EqualsBuilder builder = new EqualsBuilder();
-			ProductRow comparedRow = (ProductRow) obj;
-			builder.append(this.id, comparedRow.getId());
-			builder.append(this.amount, comparedRow.getAmount());
-			builder.append(this.discount, comparedRow.getDiscount());
-			builder.append(this.product, comparedRow.getProduct());
+			Set<ProductRow> comparedSet = (Set<ProductRow>) obj;
+			
+			for(ProductRow comparedRow : comparedSet) {
+				builder.append(this.id, comparedRow.getId());
+				builder.append(this.amount, comparedRow.getAmount());
+				builder.append(this.discount, comparedRow.getDiscount());
+				builder.append(this.product, comparedRow.getProduct());
+			}
+			
 			return builder.isEquals();
 		}
 	}
