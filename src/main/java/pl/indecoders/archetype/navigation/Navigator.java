@@ -40,6 +40,7 @@ public class Navigator {
 	public static final String GET_PROPER_CUSTOMER_JSON = "customerJson";
 	
 	public static final String INVOICE_DETAILS_PATH = "/invoice-details";
+	public static final String SOLD_REPORT_PATH = "/sold-report";
 	
 	/* Views */
 
@@ -59,6 +60,8 @@ public class Navigator {
 	public static final String INVOICES_LIST_VIEW = "invoicesList";
 	
 	public static final String INVOICE_DETAILS_VIEW = "invoiceDetails";
+	
+	public static final String SOLD_REPORT_VIEW = "soldReport";
 	
 	/* Attributes */
 	
@@ -106,6 +109,9 @@ public class Navigator {
 	public static final String INVOICE_LIST_SORT_ATTRIBUTE = "invoicesSort";
 	public static final String INVOICE_LIST_DIR_ATTRIBUTE = "invoicesDir";
 	public static final String INVOICES_LIST_PAGES_ATTRIBUTE = "invoicesPages";
+	
+	public static final String SOLD_REPORT_ATTRIBUTE = "soldForm";
+	public static final String REPORT_ATTRIBUTE = "report";
 	
 	/* Keys */
 	

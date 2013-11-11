@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 import pl.indecoders.archetype.domain.AbstractEntity;
@@ -108,23 +107,6 @@ public class ProductRow extends AbstractEntity {
 	@Override
 	public int hashCode() {
 		return reflectionHashCode(this);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj) {
-			return true;
-		} else if (!(this instanceof ProductRow)) {
-			return false;
-		} else {
-			EqualsBuilder builder = new EqualsBuilder();
-			ProductRow comparedRow = (ProductRow) obj;
-			builder.append(this.id, comparedRow.getId());
-			builder.append(this.amount, comparedRow.getAmount());
-			builder.append(this.discount, comparedRow.getDiscount());
-			builder.append(this.product, comparedRow.getProduct());
-			return builder.isEquals();
-		}
 	}
 
 	public Integer getAmount() {
