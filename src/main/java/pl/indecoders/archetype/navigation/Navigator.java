@@ -40,6 +40,7 @@ public class Navigator {
 	public static final String GET_PROPER_CUSTOMER_JSON = "customerJson";
 	
 	public static final String INVOICE_DETAILS_PATH = "/invoice-details";
+	public static final String SOLD_REPORT_PATH = "/sold-report";
 	public static final String PDF_GENERATE_PATH = "/generate-pdf";
 	
 	/* Views */
@@ -60,6 +61,8 @@ public class Navigator {
 	public static final String INVOICES_LIST_VIEW = "invoicesList";
 	
 	public static final String INVOICE_DETAILS_VIEW = "invoiceDetails";
+	
+	public static final String SOLD_REPORT_VIEW = "soldReport";
 	
 	/* Attributes */
 	
@@ -109,6 +112,9 @@ public class Navigator {
 	public static final String INVOICE_LIST_DIR_ATTRIBUTE = "invoicesDir";
 	public static final String INVOICES_LIST_PAGES_ATTRIBUTE = "invoicesPages";
 	
+	public static final String SOLD_REPORT_ATTRIBUTE = "soldForm";
+	public static final String REPORT_ATTRIBUTE = "report";
+	
 	/* Keys */
 	
 	public static final String NEXT_KEY = "next";
@@ -124,4 +130,5 @@ public class Navigator {
 	public static final String PHONE_MOBILE_REGEX = "^[0-9]{3} [0-9]{3} [0-9]{3}$";
 	public static final String PHONE_DOMESTIC_REGEX = "^[0-9]{2} [0-9]{3} [0-9]{2} [0-9]{2}$";
 	public static final String POSTAL_CODE_REGEX = "^[0-9]{2}-[0-9]{3}$";
+	public static final String BANK_REGEX = "^[0-9]{2} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$";
 }

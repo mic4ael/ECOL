@@ -26,7 +26,7 @@ public class SellerForm {
 	private AddressForm address;
 	
 	@NotEmpty
-	@RegularExpression(expression = NIP_REGEX)
+	@RegularExpression(expression = NIP_REGEX, expressions = {})
 	private String nip;
 
 	@NotEmpty

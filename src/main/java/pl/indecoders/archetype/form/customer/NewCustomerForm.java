@@ -2,6 +2,7 @@ package pl.indecoders.archetype.form.customer;
 
 import static org.apache.commons.lang.builder.ToStringStyle.DEFAULT_STYLE;
 import static pl.indecoders.archetype.navigation.Navigator.NIP_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.EMAIL_REGEX;
 
 import javax.validation.Valid;
 
@@ -23,10 +24,11 @@ public class NewCustomerForm {
 	@Valid
 	private AddressForm address;
 	
-	@RegularExpression(expression = NIP_REGEX)
+	@RegularExpression(expression = NIP_REGEX, expressions = {})
 	@NotEmpty
 	private String nip;
 	
+	@RegularExpression(expression = EMAIL_REGEX, expressions = {})
 	private String email;
 	
 	private String contactPhone;

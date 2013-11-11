@@ -79,7 +79,7 @@
 					data-toggle="dropdown"><strong><s:message code="headerMenu.reports" /></strong> <b
 						class="caret"></b></a>
 					<ul class="dropdown-menu custom-font account-menu">
-						<li><a href="#"><s:message code="headerMenu.reports.sold" /></a></li>
+						<li><a href='<s:url value="/sold-report"/>'><s:message code="headerMenu.reports.sold" /></a></li>
 					</ul></li>
 				
 			</ul>

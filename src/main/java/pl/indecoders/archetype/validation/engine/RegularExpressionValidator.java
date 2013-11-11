@@ -1,5 +1,8 @@
 package pl.indecoders.archetype.validation.engine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -14,15 +17,30 @@ import pl.indecoders.archetype.validation.annotation.RegularExpression;
 @Component
 public class RegularExpressionValidator implements ConstraintValidator<RegularExpression, String> {
 
+	private String[] expressions;
 	private String expression;
 	
 	@Override
 	public void initialize(RegularExpression constraintAnnotation) {
 		this.expression = constraintAnnotation.expression();
+		this.expressions = constraintAnnotation.expressions();
 	}
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return value.matches(expression);
+
+		if(value.isEmpty()) {
+			return true;
+		}
+		
+		if(expressions.length == 0 || expressions == null) {
+			return value.matches(expression);
+		} else {
+			List<Boolean> statuses = new ArrayList<Boolean>();
+			for(String exp : expressions) {
+				statuses.add(value.matches(exp));
+			}
+			return statuses.contains(true) ? true : false;
+		}
 	}
 }

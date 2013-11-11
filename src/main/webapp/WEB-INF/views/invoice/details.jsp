@@ -129,13 +129,12 @@
 					<td></td>
 					<td></td>
 					<td><strong><s:message code="invoiceDetails.general" /></strong></td>
-					<td>${invoiceDetails.generalAmount}</td>
-					<td>${invoiceDetails.taxAmount}</td>
+					<td>${invoiceDetails.generalAmount} PLN</td>
+					<td>${invoiceDetails.taxAmount} PLN</td>
 				</tr>
 				
 			</tbody>
 		</table>
-		
 		
 		<p><strong><s:message code="invoiceDetails.bankName" />: </strong>${invoiceDetails.differentSeller.bankInformations.bankName}</p>
 		<p><strong><s:message code="invoiceDetails.bankNumber" />: </strong>${invoiceDetails.differentSeller.bankInformations.bankAccountNumber}</p>

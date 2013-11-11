@@ -15,5 +15,8 @@
 	<definition name="invoicesList" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/invoice/list.jsp"></put-attribute>
 	</definition>
+	<definition name="soldReport" extends="default">
+		<put-attribute name="body" value="/WEB-INF/views/invoice/report.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 

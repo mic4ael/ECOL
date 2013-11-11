@@ -20,4 +20,5 @@
 <!-- 	</logger> -->
 <!-- 	<logger name="pl.indecoders.archetype" level="ALL" /> -->
 <!-- 	<logger name="org.springframework.security" level="ALL" /> -->
+	<logger name="org.springframework" level="ALL" />
 </configuration>
