@@ -40,13 +40,14 @@ public class Navigator {
 	public static final String GET_PROPER_CUSTOMER_JSON = "customerJson";
 	
 	public static final String INVOICE_DETAILS_PATH = "/invoice-details";
+	public static final String PDF_GENERATE_PATH = "/generate-pdf";
 	
 	/* Views */
 
 	public static final String HOME_VIEW = "home";
 	public static final String LOGIN_VIEW = "login";
 	public static final String REGISTRATION_VIEW = "registration";
-	
+	public static final String PDF_VIEW = "InvoicePdfGenerator";
 	public static final String NEW_PRODUCT_VIEW = "newProduct";
 	public static final String NEW_CUSTOMER_VIEW = "newCustomer";
 	public static final String CUSTOMERS_LIST_VIEW = "customersList";

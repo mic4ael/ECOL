@@ -12,7 +12,9 @@ import static pl.indecoders.archetype.navigation.Navigator.INVOICE_DETAILS_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.INVOICE_DETAILS_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.INVOICE_LIST_DIR_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.INVOICE_LIST_SORT_ATTRIBUTE;
+import static pl.indecoders.archetype.navigation.Navigator.PDF_GENERATE_PATH;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ import pl.indecoders.archetype.repository.invoice.InvoiceRepository;
 import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.invoice.InvoiceService;
 import pl.indecoders.archetype.utils.PaginationUtils;
+
+import com.lowagie.text.Document;
 
 /**
  * The Class InvoiceController.
@@ -87,4 +91,10 @@ public class InvoiceController {
 	}
 	
 	/* PDF generation */
+	@RequestMapping(value = PDF_GENERATE_PATH + "/{invoiceId}", method = GET)
+	public String generatePdf(final Model model, @PathVariable Integer invoiceId, final Document doc,
+			final HttpServletResponse response) {
+		
+		return "pdfView";
+	}
 }

@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,12 +21,15 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.servlet.view.XmlViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
@@ -40,6 +46,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	
 	private static final String RESOURCES_HANDLER = "/resources/";
 	private static final String RESOURCES_LOCATION = RESOURCES_HANDLER + "**";
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Override
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
@@ -67,6 +76,15 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		messageSource.setCacheSeconds(5);
 		return messageSource;
 	}
+	
+	@Bean(name="excelViewResolver")
+    public ViewResolver getXmlViewResolver() {
+        XmlViewResolver resolver = new XmlViewResolver();
+        resolver.setLocation(new ServletContextResource(servletContext,
+                    "/WEB-INF/views/pdf/pdf-views.xml"));
+        resolver.setOrder(1);
+        return resolver;
+    }
 	
 	@Bean
 	public TilesViewResolver configureTilesViewResolver() {

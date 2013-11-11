@@ -156,7 +156,8 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/edit", method = POST)
-	public String processEditCustomerPage(@PathVariable Long id, @Valid @ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE) NewCustomerForm form, final BindingResult results) {
+	public String processEditCustomerPage(@PathVariable Long id, @Valid @ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE) NewCustomerForm form, 
+			final RedirectAttributes ra, final BindingResult results) {
 		if(results.hasErrors()) {
 			return EDIT_CUSTOMER_VIEW;
 		}

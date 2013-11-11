@@ -2,6 +2,7 @@ package pl.indecoders.archetype.controller.product;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static pl.indecoders.archetype.navigation.Navigator.CURRENTLY_EDITED_PRODUCT_ID;
 import static pl.indecoders.archetype.navigation.Navigator.EDIT_PRODUCT_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.GET_PRODUCTS_JSON;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_INVOICE_PATH;
@@ -16,14 +17,15 @@ import static pl.indecoders.archetype.navigation.Navigator.PRODUCTS_LIST_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_COUNT_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_PAGES_COUNT;
 import static pl.indecoders.archetype.navigation.Navigator.REMOVE_PRODUCT_PATH;
-import static pl.indecoders.archetype.navigation.Navigator.CURRENTLY_EDITED_PRODUCT_ID;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,6 +60,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	@Autowired
 	private ProductService productService;
@@ -97,8 +102,13 @@ public class ProductController {
 	
 	@RequestMapping(value = NEW_PRODUCT_PATH, method = POST)
 	public String processNewProductPage(@Valid @ModelAttribute(NEW_PRODUCT_FORM_ATTRIBUTE) NewProductForm form, final BindingResult result, 
-			RedirectAttributes rs, final HttpSession session) {
+			RedirectAttributes rs, final HttpSession session, final Locale locale) {
 		if(result.hasErrors()) {
+			return NEW_PRODUCT_VIEW;
+		}
+		
+		if (form.getGroup().getName() == null || (form.getGroup().getName().equals(""))) {
+			result.rejectValue("group.name", "error.group.name", messageSource.getMessage("group.name.notnull", null, locale));
 			return NEW_PRODUCT_VIEW;
 		}
 		

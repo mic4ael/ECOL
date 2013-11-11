@@ -70,8 +70,6 @@
 
 		<div class="invoice-piece" style="height: 100px;">
 	
-			
-
 			<div class="container-small pull-left">
 				<form:errors path="invoiceNumber" element="span" class="merit-error"></form:errors>
 				<span><s:message code="newInvoice.number" /></span> <form:input path="invoiceNumber"
@@ -98,7 +96,7 @@
 
 		<!-- Information about customer and seller -->
 
-		<div style="height: 420px;" class="invoice-piece">
+		<div style="min-height: 420px;" class="invoice-piece">
 
 			<div class="invoice-piece-left">
 
@@ -222,13 +220,15 @@
 							code="home.email" /></span>
 				</div>
 
-				<a id="searchCustomer" style="cursor: pointer;"><s:message
-						code="newInvoice.checkCustomer" /></a>
-
 			</div>
+			
+			<a id="searchCustomer" class="btn btn-default" style="cursor: pointer; position: relative; margin-left: 65%;"><s:message
+						code="newInvoice.checkCustomer" /></a>
+			
+			
 		</div>
 		
-		<div class="invoice-piece" style="height: 60px;">
+		<div class="invoice-piece" style="min-height: 60px;">
 			
 			<form:errors path="seller.bankName" element="span" class="merit-error"></form:errors>
 			<span class="eco-info"><s:message code="newInvoice.bankName" /></span> <form:input
@@ -240,7 +240,7 @@
 
 		</div>
 		
-		<div class="invoice-piece" style="height: 60px;">
+		<div class="invoice-piece" style="min-height: 60px;">
 	
 			<span class="eco-info"><s:message code="newInvoice.paymentType" /></span> 
 			<form:select class="inv-input-med" path="paymentType">
