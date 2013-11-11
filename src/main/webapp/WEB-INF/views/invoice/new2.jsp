@@ -63,6 +63,8 @@
 
 	<form:form modelAttribute="productRow" method="post">
 	
+		<form:input path="id" style="display:none" id="hiddenProductId" />
+		
 		<div class="container-flat">
 			<form:input id="prod-name" class="inv-input-med" disabled="true" path="name" /><span class="eco-info"><a id="product-model-trigger" style="cursor: pointer;"><s:message code="newInvoice2.find" /></a></span>
 		</div>	
@@ -83,15 +85,15 @@
 
 		<div class="container-flat">
 			<form:errors path="discountAmount" element="span" class="merit-error"></form:errors>
-			<form:input class="inv-input-med" path="discountAmount" /><span class="eco-info"><s:message code="newInvoice2.discountAmount" /></span>
+			<form:input value="0" class="inv-input-med" path="discountAmount" /><span class="eco-info"><s:message code="newInvoice2.discountAmount" /></span>
 		</div>	
 
 
-		<button class="btn btn-default login-button">
+		<button name="next" class="btn btn-default login-button">
 				<s:message code="newInvoice2.next" />
 		</button>
 	
-		<button class="btn btn-default login-button">
+		<button name="recap" class="btn btn-default login-button">
 				<s:message code="newInvoice2.finalize" />
 		</button>
 	

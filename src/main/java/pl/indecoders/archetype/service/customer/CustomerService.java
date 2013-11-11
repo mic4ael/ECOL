@@ -1,5 +1,6 @@
 package pl.indecoders.archetype.service.customer;
 
+import static pl.indecoders.archetype.specification.customer.CustomerSpecifications.hasGivenProperties;
 import static pl.indecoders.archetype.utils.SortTranslationUtils.translateDirection;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 	
-	public void processCustomer(final NewCustomerForm form, final Account owner) {
+	public Customer processCustomer(final NewCustomerForm form, final Account owner) {
 		Customer customer = new Customer();
 		customer.setOwner(owner);
 		customer.setName(form.getName());
@@ -34,7 +35,7 @@ public class CustomerService {
 		customer.setFaxPhone(form.getFaxPhone() != null ? form.getFaxPhone() : null);
 		customer.setEmail(form.getEmail() != null ? form.getEmail() : null);
 		customer.setIsVisible(true);
-		customerRepository.save(customer);
+		return customerRepository.save(customer);
 	}
 
 	private Address createAddress(NewCustomerForm form) {
@@ -74,7 +75,8 @@ public class CustomerService {
 		customerRepository.save(customer);
 	}
 	
-	public void findCustomerOrCreate(final NewCustomerForm form) {
-		
+	public Customer findCustomerOrCreate(final NewCustomerForm form, final Account owner) {
+		Customer customer = customerRepository.findOne(hasGivenProperties(owner, form));
+		return customer != null ? customer : processCustomer(form, owner);
 	}
 }

@@ -13,6 +13,7 @@ import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.domain.address.Address_;
 import pl.indecoders.archetype.domain.customer.Customer;
 import pl.indecoders.archetype.domain.customer.Customer_;
+import pl.indecoders.archetype.form.customer.NewCustomerForm;
 
 
 /**
@@ -36,6 +37,19 @@ public class CustomerSpecifications {
 				
 				Predicate containsAltern = cb.or(containsName, containsNip, containsCity);
 				return cb.and(hasOwner, isVisible, containsAltern);
+			}
+		};
+	}
+	
+	public static Specification<Customer> hasGivenProperties(final Account owner, final NewCustomerForm form) {
+		return new Specification<Customer>() {
+			@Override
+			public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate hasOwner = cb.equal(root.get(Customer_.owner), owner);
+				Predicate hasName = cb.equal(root.get(Customer_.name), form.getName());
+				Predicate hasNip = cb.equal(root.get(Customer_.nip), form.getNip());
+				Predicate isVisible = cb.equal(root.get(Customer_.isVisible), true);
+				return cb.and(hasOwner, hasName, hasNip, isVisible);
 			}
 		};
 	}

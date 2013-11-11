@@ -11,13 +11,13 @@
 	</appender>
 
 	<jmxConfigurator />
-	<root level="WARN">
-		<appender-ref ref="STDOUT" />
-	</root>
-	<logger name="org.hibernate.SQL">
-	    <level value="ALL" />
-	    <appender-ref ref="FILE"/>
-	</logger>
-	<logger name="pl.indecoders.archetype" level="ALL" />
+<!-- 	<root level="WARN"> -->
+<!-- 		<appender-ref ref="STDOUT" /> -->
+<!-- 	</root> -->
+<!-- 	<logger name="org.hibernate.SQL"> -->
+<!-- 	    <level value="ALL" /> -->
+<!-- 	    <appender-ref ref="FILE"/> -->
+<!-- 	</logger> -->
+<!-- 	<logger name="pl.indecoders.archetype" level="ALL" /> -->
 <!-- 	<logger name="org.springframework.security" level="ALL" /> -->
 </configuration>

@@ -1,5 +1,6 @@
 package pl.indecoders.archetype.navigation;
 
+
 /**
  * The Class Navigator.
  * @author Mateusz
@@ -38,6 +39,8 @@ public class Navigator {
 	public static final String GET_PRODUCTS_JSON = "productsJson";
 	public static final String GET_PROPER_CUSTOMER_JSON = "customerJson";
 	
+	public static final String INVOICE_DETAILS_PATH = "/invoice-details";
+	
 	/* Views */
 
 	public static final String HOME_VIEW = "home";
@@ -54,6 +57,8 @@ public class Navigator {
 	public static final String NEW_INVOICE_VIEW = "newInvoice";
 	public static final String NEW_INVOICE_PRODUCTS_VIEW = "newInvoiceStep2";
 	public static final String INVOICES_LIST_VIEW = "invoicesList";
+	
+	public static final String INVOICE_DETAILS_VIEW = "invoiceDetails";
 	
 	/* Attributes */
 	
@@ -97,10 +102,17 @@ public class Navigator {
 	
 	public static final String PRODUCT_ROW_FORM_ATTRIBUTE = "productRow";
 	
+	public static final String INVOICE_DETAILS_ATTRIBUTE = "invoiceDetails";
+	public static final String INVOICE_ATTRIBUTE = "invoices";
+	public static final String INVOICE_LIST_SORT_ATTRIBUTE = "invoicesSort";
+	public static final String INVOICE_LIST_DIR_ATTRIBUTE = "invoicesDir";
+	public static final String INVOICES_LIST_PAGES_ATTRIBUTE = "invoicesPages";
+	
 	/* Keys */
 	
-	public static final String FINALIZE_REGISTRATION_KEY = "finalize";
+	public static final String NEXT_KEY = "next";
 	public static final String BAD_CREDENTIALS_KEY = "badCredentials";
+	public static final String FINALIZE_REGISTRATION_KEY = "finalize";
 	
 	/* Reqular expressions */
 	
