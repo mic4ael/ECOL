@@ -7,6 +7,7 @@ import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
 import static org.springframework.format.annotation.NumberFormat.Style.NUMBER;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -47,7 +48,10 @@ public class Invoice extends AbstractEntity {
 
 	@Column(name = "invoice_number")
 	@NumberFormat(style = NUMBER)
-	private Integer invoiceNumber;
+	private String invoiceNumber;
+	
+	@Column(name = "invoice_city")
+	private String invoiceCity;
 	
 	@Column(name = "sold_date")
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
@@ -61,16 +65,38 @@ public class Invoice extends AbstractEntity {
 	@JoinColumn(name = "invoice_customer_id")
 	private Customer customer;
 	
-	@ManyToMany(fetch = EAGER)
+	@ManyToMany(fetch = EAGER, cascade = ALL)
 	private Set<ProductRow> products;
 	
-	@ManyToOne(fetch = EAGER)
+	@ManyToOne(fetch = EAGER, cascade = ALL)
 	@JoinColumn(name = "payment_informations_id")
 	private PaymentInformations paymentInformations;
 	
 	@ManyToOne(fetch = EAGER, cascade = ALL)
 	private Profile differentSeller;
 	
+	@Column(name = "general_amount")
+	private BigDecimal generalAmount;
+	
+	@Column(name = "tax_amount")
+	private BigDecimal taxAmount;
+	
+	public BigDecimal getGeneralAmount() {
+		return generalAmount;
+	}
+
+	public void setGeneralAmount(BigDecimal generalAmount) {
+		this.generalAmount = generalAmount;
+	}
+
+	public BigDecimal getTaxAmount() {
+		return taxAmount;
+	}
+
+	public void setTaxAmount(BigDecimal taxAmount) {
+		this.taxAmount = taxAmount;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -79,11 +105,11 @@ public class Invoice extends AbstractEntity {
 		this.id = id;
 	}
 
-	public Integer getInvoiceNumber() {
+	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
 
-	public void setInvoiceNumber(Integer invoiceNumber) {
+	public void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
 
@@ -142,5 +168,13 @@ public class Invoice extends AbstractEntity {
 
 	public void setDifferentSeller(Profile differentSeller) {
 		this.differentSeller = differentSeller;
+	}
+
+	public String getInvoiceCity() {
+		return invoiceCity;
+	}
+
+	public void setInvoiceCity(String invoiceCity) {
+		this.invoiceCity = invoiceCity;
 	}
 }

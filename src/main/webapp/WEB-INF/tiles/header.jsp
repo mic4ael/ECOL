@@ -72,7 +72,7 @@
 						class="caret"></b></a>
 					<ul class="dropdown-menu custom-font account-menu">
 						<li><a href='<s:url value="/new-invoice"/>'><s:message code="headerMenu.invoices.new" /></a></li>
-						<li><a href='<s:url value="/invoices-list"/>'><s:message code="headerMenu.invoices.list" /></a></li>
+						<li><a href='<s:url value="/invoices-list/1"/>'><s:message code="headerMenu.invoices.list" /></a></li>
 					</ul></li>
 
 				<li class="dropdown"><a href="#" class="dropdown-toggle"

@@ -3,6 +3,8 @@ package pl.indecoders.archetype.controller.product;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static pl.indecoders.archetype.navigation.Navigator.EDIT_PRODUCT_PATH;
+import static pl.indecoders.archetype.navigation.Navigator.GET_PRODUCTS_JSON;
+import static pl.indecoders.archetype.navigation.Navigator.NEW_INVOICE_PATH;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_PRODUCT_ATTRIBUTES;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_PRODUCT_FORM_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.NEW_PRODUCT_PATH;
@@ -26,8 +28,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,6 +41,7 @@ import pl.indecoders.archetype.form.product.NewProductForm;
 import pl.indecoders.archetype.repository.product.ProductRepository;
 import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.product.ProductService;
+import pl.indecoders.archetype.specification.product.ProductSpecifications;
 import pl.indecoders.archetype.utils.PaginationUtils;
 
 /**
@@ -177,4 +182,12 @@ public class ProductController {
                 
                 return PRODUCTS_LIST_VIEW;
         }
+        
+        /* JSons */
+        
+    	@ResponseBody
+    	@RequestMapping(value = NEW_INVOICE_PATH + "/" + GET_PRODUCTS_JSON, method = POST)
+    	public List<Product> getProductsJson(@RequestBody String pattern) {
+    		return productRepository.findAll(ProductSpecifications.containsPattern(pattern, userContext.getSignedUser()));
+    	}
 }

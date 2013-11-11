@@ -39,13 +39,13 @@
 			<div class="input-row">
 				<form:input path="postal" value="${personalInfos.postal}"
 					type="text" class="merit-input-mini" />
-				<span class="input-label"><s:message code="home.home" /></span>
+				<span class="input-label"><s:message code="home.postal" /></span>
 			</div>
 
 			<div class="input-row">
 				<form:input path="homeNumber" value="${personalInfos.homeNumber}"
 					type="text" class="merit-input-mini" />
-				<span class="input-label"><s:message code="home.postal" /></span>
+				<span class="input-label"><s:message code="home.home" /></span>
 			</div>
 
 			<div class="input-row">
