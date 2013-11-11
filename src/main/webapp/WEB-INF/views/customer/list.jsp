@@ -6,7 +6,11 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <div class="page_view">
-
+	<c:if test="${message}">
+		<div id="message" style="text-align: center; postion: absolute; top: 100px; margin: 20px auto;" class="alert alert-success">
+			<s:message code="operation.success"/>
+		</div>
+	</c:if>
 	<form method="post">
 		<div class="sort-controls">
 			<div class="pull-left">
@@ -26,9 +30,18 @@
 				</select>
 			</div>
 			<div class="pull-left">
-				<button class="btn btn-default">
-					<s:message code="customersList.sort" />
-				</button>
+				<c:choose>
+					<c:when test="${customersCount > 0 }">
+						<button class="btn btn-default">
+							<s:message code="customersList.sort" />
+						</button>
+					</c:when>
+					<c:otherwise>
+						<button class="btn btn-default" disabled>
+							<s:message code="customersList.sort" />
+						</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</form>
@@ -86,3 +99,7 @@
         </div>
     </c:if>
 </div>
+
+<script type="text/javascript">
+	$('#message').fadeOut(4000);
+</script>

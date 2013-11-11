@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.indecoders.archetype.domain.customer.Customer;
 import pl.indecoders.archetype.form.customer.NewCustomerForm;
@@ -138,8 +139,11 @@ public class CustomerController {
 	/* Removes a customer */
 	
 	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/" + "delete", method = GET)
-	public String deleteCustomer(@PathVariable Long id) {
+	public String deleteCustomer(@PathVariable Long id, final RedirectAttributes model) {
 		customerService.setCustomerNotVisible(id);
+		
+		model.addFlashAttribute("message", true);
+		
 		return "redirect:" + CUSTOMERS_LIST_PATH + "/1";
 	}
 	
