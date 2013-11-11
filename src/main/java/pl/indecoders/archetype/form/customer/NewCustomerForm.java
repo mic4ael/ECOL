@@ -1,7 +1,6 @@
 package pl.indecoders.archetype.form.customer;
 
 import static org.apache.commons.lang.builder.ToStringStyle.DEFAULT_STYLE;
-import static pl.indecoders.archetype.navigation.Navigator.EMAIL_REGEX;
 import static pl.indecoders.archetype.navigation.Navigator.NIP_REGEX;
 
 import javax.validation.Valid;

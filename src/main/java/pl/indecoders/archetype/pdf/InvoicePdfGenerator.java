@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
+import pl.indecoders.archetype.domain.document.Invoice;
+
 import com.lowagie.text.Document;
 import com.lowagie.text.Table;
 import com.lowagie.text.pdf.PdfWriter;
@@ -20,10 +22,13 @@ public class InvoicePdfGenerator extends AbstractPdfView {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
+		Invoice invoice = (Invoice) map.get("invoiceDetails");
 		Table table = new Table(2);
-		table.addCell("Month");
-		table.addCell("Year");
+		table.addCell(invoice.getInvoiceCity());
+		table.addCell(invoice.getSoldDate().toString());
 		
+		document.addTitle("Faktura nr: " + invoice.getInvoiceNumber());
+		document.addCreationDate();
 		document.add(table);
 	}
 }

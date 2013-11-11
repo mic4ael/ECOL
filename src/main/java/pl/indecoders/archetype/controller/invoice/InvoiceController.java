@@ -14,6 +14,8 @@ import static pl.indecoders.archetype.navigation.Navigator.INVOICE_LIST_DIR_ATTR
 import static pl.indecoders.archetype.navigation.Navigator.INVOICE_LIST_SORT_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.PDF_GENERATE_PATH;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -92,9 +94,12 @@ public class InvoiceController {
 	
 	/* PDF generation */
 	@RequestMapping(value = PDF_GENERATE_PATH + "/{invoiceId}", method = GET)
-	public String generatePdf(final Model model, @PathVariable Integer invoiceId, final Document doc,
+	public String generatePdf(final Map<String, Object> model, @PathVariable Long invoiceId, final Document doc,
 			final HttpServletResponse response) {
 		
+		model.put("invoiceDetails", invoiceRepository.findOne(invoiceId));
+	    response.setHeader( "Content-Disposition", "attachment;filename=" + "invoice.pdf" );
+	    
 		return "pdfView";
 	}
 }
