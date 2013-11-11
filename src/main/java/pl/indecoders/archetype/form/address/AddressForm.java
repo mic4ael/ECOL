@@ -22,7 +22,7 @@ public class AddressForm {
 	private String homeNumber;
 	
 	@NotEmpty
-	@RegularExpression(expression = POSTAL_CODE_REGEX)
+	@RegularExpression(expression = POSTAL_CODE_REGEX, expressions = {})
 	private String postalCode;
 
 	public String getCity() {

@@ -128,4 +128,5 @@ public class Navigator {
 	public static final String PHONE_MOBILE_REGEX = "^[0-9]{3} [0-9]{3} [0-9]{3}$";
 	public static final String PHONE_DOMESTIC_REGEX = "^[0-9]{2} [0-9]{3} [0-9]{2} [0-9]{2}$";
 	public static final String POSTAL_CODE_REGEX = "^[0-9]{2}-[0-9]{3}$";
+	public static final String BANK_REGEX = "^[0-9]{2} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$";
 }

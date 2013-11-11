@@ -26,6 +26,7 @@ import pl.indecoders.archetype.validation.engine.RegularExpressionValidator;
 @Documented
 public @interface RegularExpression {
 
+	String[] expressions();
 	String expression();
 	String message() default "{regex.value}";
 	Class<?>[] groups() default {};

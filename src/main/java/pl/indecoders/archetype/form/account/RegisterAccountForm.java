@@ -18,7 +18,7 @@ import pl.indecoders.archetype.validation.annotation.UniqueEmail;
  */
 public class RegisterAccountForm {
 
-	@RegularExpression(expression = EMAIL_REGEX)
+	@RegularExpression(expression = EMAIL_REGEX, expressions = {})
 	@NotEmpty
 	@UniqueEmail
 	private String email;

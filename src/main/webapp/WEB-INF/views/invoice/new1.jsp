@@ -133,13 +133,13 @@
 				<div class="container-med-flat">
 				<form:errors path="seller.address.postalCode" element="span" class="merit-error"></form:errors>
 					<form:input path="seller.address.postalCode" class="inv-input-med" value="${newInvoice.postal}" type="text" /> <span><s:message
-							code="home.postal" /></span>
+							code="newInvoice.postal" /></span>
 				</div>
 
 				<div class="container-med-flat">
 				<form:errors path="seller.nip" element="span" class="merit-error"></form:errors>
 					<form:input path="seller.nip" class="inv-input-med" value="${newInvoice.nip}" type="text" /> <span><s:message
-							code="home.nip" /></span>
+							code="newInvoice.nip" /></span>
 				</div>
 
 				<div class="container-med-flat">

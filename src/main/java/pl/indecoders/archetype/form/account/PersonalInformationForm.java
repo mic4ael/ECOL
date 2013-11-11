@@ -1,8 +1,17 @@
 package pl.indecoders.archetype.form.account;
 
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
+import static pl.indecoders.archetype.navigation.Navigator.BANK_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.EMAIL_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.NIP_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.PHONE_DOMESTIC_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.PHONE_MOBILE_INTERN_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.PHONE_MOBILE_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.POSTAL_CODE_REGEX;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+
+import pl.indecoders.archetype.validation.annotation.RegularExpression;
 
 /**
  * The Class PersonalInformations.
@@ -13,13 +22,25 @@ public class PersonalInformationForm {
 	private String name;
 	private String city;
 	private String street;
+	
+	@RegularExpression(expression = POSTAL_CODE_REGEX, expressions = {})
 	private String postal;
 	private String homeNumber;
+	
+	@RegularExpression(expression = NIP_REGEX, expressions = {})
 	private String nip;
+	
+	@RegularExpression(expression = "", expressions = {PHONE_MOBILE_REGEX, PHONE_DOMESTIC_REGEX, PHONE_MOBILE_INTERN_REGEX})
 	private String contactPhone;
+
+	@RegularExpression(expression = "", expressions = {PHONE_MOBILE_REGEX, PHONE_DOMESTIC_REGEX, PHONE_MOBILE_INTERN_REGEX})
 	private String faxPhone;
+
+	@RegularExpression(expression = EMAIL_REGEX, expressions = {})
 	private String email;
 	private String bankName;
+	
+	@RegularExpression(expression = BANK_REGEX, expressions = {})
 	private String bankNumber;
 
 	public String getName() {
