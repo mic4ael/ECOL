@@ -14,6 +14,7 @@ import static pl.indecoders.archetype.navigation.Navigator.PRODUCTS_LIST_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_COUNT_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_PAGES_COUNT;
 import static pl.indecoders.archetype.navigation.Navigator.REMOVE_PRODUCT_PATH;
+import static pl.indecoders.archetype.navigation.Navigator.CURRENTLY_EDITED_PRODUCT_ID;
 
 import java.util.List;
 
@@ -84,6 +85,8 @@ public class ProductController {
 	public String showNewProductPage(final Model model, final HttpSession session) {
 		model.addAttribute(NEW_PRODUCT_FORM_ATTRIBUTE, new NewProductForm());
 		
+		session.removeAttribute(CURRENTLY_EDITED_PRODUCT_ID);
+		
 		return NEW_PRODUCT_VIEW;
 	}
 	
@@ -103,9 +106,10 @@ public class ProductController {
 	
 	/* Edit */
 	@RequestMapping(value = EDIT_PRODUCT_PATH + "/{id}/edit", method = GET)
-	public String editProductGet(final Model model, @PathVariable Long id) {
+	public String editProductGet(final HttpSession session, final Model model, @PathVariable Long id) {
 		NewProductForm editForm = new NewProductForm();
 		
+		session.setAttribute(CURRENTLY_EDITED_PRODUCT_ID, id);
 		editForm = productService.prepareEditForm(id);
 		model.addAttribute(NEW_PRODUCT_FORM_ATTRIBUTE, editForm);
 		
@@ -118,7 +122,6 @@ public class ProductController {
 		
 		if (result.hasErrors())
 			return NEW_PRODUCT_VIEW;
-		
 		
 		return NEW_PRODUCT_VIEW;
 	}
