@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 
 import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.repository.customer.CustomerRepository;
-import pl.indecoders.archetype.validation.annotation.UniqueCustomerName;
+import pl.indecoders.archetype.validation.annotation.UniqueNip;
 
 /**
  * The Class UniqueCustomerNameValidator.
  * @author Mateusz
  */
 @Component
-public class UniqueCustomerNameValidator implements ConstraintValidator<UniqueCustomerName, String> {
+public class UniqueNipValidator implements ConstraintValidator<UniqueNip, String> {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -27,11 +27,11 @@ public class UniqueCustomerNameValidator implements ConstraintValidator<UniqueCu
 	private HttpSession session;
 	
 	@Override
-	public void initialize(UniqueCustomerName constraintAnnotation) {
+	public void initialize(UniqueNip constraintAnnotation) {
 	}
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return customerRepository.findByOwnerAndNameAndIsVisible((Account) session.getAttribute(CURRENTLY_SIGNED), value, true) == null;
+		return customerRepository.findByOwnerAndNipAndIsVisible((Account) session.getAttribute(CURRENTLY_SIGNED), value, true) == null;
 	}
 }

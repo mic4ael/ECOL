@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.domain.address.Address;
 import pl.indecoders.archetype.domain.customer.Customer;
+import pl.indecoders.archetype.form.customer.InvoiceNewCustomerForm;
 import pl.indecoders.archetype.form.customer.NewCustomerForm;
 import pl.indecoders.archetype.repository.customer.CustomerRepository;
 
@@ -47,6 +48,30 @@ public class CustomerService {
 		return address;
 	}
 	
+	/* Invoice */
+	
+	public Customer processCustomer(final InvoiceNewCustomerForm form, final Account owner) {
+		Customer customer = new Customer();
+		customer.setOwner(owner);
+		customer.setName(form.getName());
+		customer.setNip(form.getNip());
+		customer.setAddress(createAddress(form));
+		customer.setContactPhone(form.getContactPhone() != null ? form.getContactPhone() : null);
+		customer.setFaxPhone(form.getFaxPhone() != null ? form.getFaxPhone() : null);
+		customer.setEmail(form.getEmail() != null ? form.getEmail() : null);
+		customer.setIsVisible(true);
+		return customerRepository.save(customer);
+	}
+
+	private Address createAddress(InvoiceNewCustomerForm form) {
+		Address address = new Address();
+		address.setCity(form.getAddress().getCity());
+		address.setPostalCode(form.getAddress().getPostalCode());
+		address.setHomeNumber(form.getAddress().getHomeNumber());
+		address.setStreet(form.getAddress().getStreet());
+		return address;
+	}
+	
 	public List<Customer> getPagedCustomers(final Account owner, final Integer pageIndex, final Integer pageLimit) {
 		final PageRequest request = new PageRequest(pageIndex, pageLimit);
 		return customerRepository.findByOwnerAndIsVisible(request, owner, true);
@@ -63,7 +88,7 @@ public class CustomerService {
 		customerRepository.save(customer);
 	}
 	
-	public void editCustomer(final Long id, final NewCustomerForm form) {
+	public void editCustomer(final Long id, final InvoiceNewCustomerForm form) {
 		Customer customer = customerRepository.findOne(id);
 		customer.setName(form.getName());
 		customer.setNip(form.getNip());
@@ -75,7 +100,7 @@ public class CustomerService {
 		customerRepository.save(customer);
 	}
 	
-	public Customer findCustomerOrCreate(final NewCustomerForm form, final Account owner) {
+	public Customer findCustomerOrCreate(final InvoiceNewCustomerForm form, final Account owner) {
 		Customer customer = customerRepository.findOne(hasGivenProperties(owner, form));
 		return customer != null ? customer : processCustomer(form, owner);
 	}

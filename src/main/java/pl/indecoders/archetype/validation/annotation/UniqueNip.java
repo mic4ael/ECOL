@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import pl.indecoders.archetype.validation.engine.UniqueCustomerNameValidator;
+import pl.indecoders.archetype.validation.engine.UniqueNipValidator;
 
 /**
  * The annotation UniqueCustomerName.
@@ -20,11 +20,11 @@ import pl.indecoders.archetype.validation.engine.UniqueCustomerNameValidator;
  */
 @Target({ FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = UniqueCustomerNameValidator.class)
+@Constraint(validatedBy = UniqueNipValidator.class)
 @Documented
-public @interface UniqueCustomerName {
+public @interface UniqueNip {
 
-	String message() default "{unique.customerName}";
+	String message() default "{unique.nip}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

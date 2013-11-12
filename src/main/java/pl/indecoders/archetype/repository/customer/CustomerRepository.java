@@ -20,6 +20,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>, JpaSp
 	public Long countByOwner(final Account owner);
 
 	public List<Customer> findByOwnerAndIsVisible(Pageable pageable, final Account owner, final Boolean isVisible);
-	public Customer findByOwnerAndNameAndIsVisible(final Account owner, final String name, final Boolean isVisible);
+	public Customer findByOwnerAndNipAndIsVisible(final Account owner, final String name, final Boolean isVisible);
 	public List<Customer> findByOwnerAndIsVisible(final Account owner, final Boolean isVisible);
 }

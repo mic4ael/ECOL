@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.indecoders.archetype.domain.customer.Customer;
+import pl.indecoders.archetype.form.customer.InvoiceNewCustomerForm;
 import pl.indecoders.archetype.form.customer.NewCustomerForm;
 import pl.indecoders.archetype.repository.customer.CustomerRepository;
 import pl.indecoders.archetype.security.SecurityUserContext;
@@ -70,11 +71,6 @@ public class CustomerController {
 	private MessageSource messageSource;
 
 	/* Attributes */
-	
-	@ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE)
-	public NewCustomerForm newCustomerForm() {
-		return new NewCustomerForm();
-	}
 
 	@ModelAttribute(CUSTOMER_COUNT_ATTRIBUTE)
 	public Long customersCount(final HttpSession session) {
@@ -89,8 +85,9 @@ public class CustomerController {
 	/* New customer */
 
 	@RequestMapping(value = NEW_CUSTOMER_PATH, method = GET)
-	public String showNewCustomerPage(final HttpSession session) {
+	public String showNewCustomerPage(final HttpSession session, final Model model) {
 		session.setAttribute(CURRENTLY_SIGNED, userContext.getSignedUser());
+		model.addAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE, new InvoiceNewCustomerForm());
 		return NEW_CUSTOMER_VIEW;
 	}
 
@@ -127,12 +124,12 @@ public class CustomerController {
 		return CUSTOMERS_LIST_VIEW;
 	}
 	
-	/* Checks if given name is available */
+	/* Checks if given nip is available */
 	
 	@ResponseBody
 	@RequestMapping(value = IS_CUSTOMER_AVAILABLE, method = POST)
-	public boolean isCustomerNameAvailable(@RequestBody String name) {
-		return customerRepository.findByOwnerAndNameAndIsVisible(userContext.getSignedUser(), name, true) == null ? true : false;
+	public boolean isCustomerNameAvailable(@RequestBody String nip) {
+		return customerRepository.findByOwnerAndNipAndIsVisible(userContext.getSignedUser(), nip, true) == null ? true : false;
 	}
 	
 	/* Removes a customer */
@@ -147,12 +144,13 @@ public class CustomerController {
 	
 	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/edit", method = GET)
 	public String showEditCustomerPage(@PathVariable Long id, final Model model) {
+		model.addAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE, new InvoiceNewCustomerForm());
 		model.addAttribute(EDITED_CUSTOMER_ATTRIBUTE, customerRepository.findOne(id));
 		return EDIT_CUSTOMER_VIEW;
 	}
 	
 	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/edit", method = POST)
-	public String processEditCustomerPage(@PathVariable Long id, @Valid @ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE) NewCustomerForm form, final BindingResult results) {
+	public String processEditCustomerPage(@PathVariable Long id, @Valid @ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE) InvoiceNewCustomerForm form, final BindingResult results) {
 		if(results.hasErrors()) {
 			return EDIT_CUSTOMER_VIEW;
 		}

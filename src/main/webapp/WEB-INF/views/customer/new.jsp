@@ -23,7 +23,7 @@
 			<p id="customerInfo"></p>			
 
 			<div class="input-row">
-				<form:input path="name" type="text" id="customerNameInput"
+				<form:input path="name" type="text"
 					class="merit-input-med" />
 				<span class="input-label"><s:message code="newCustomer.name" /></span>
 			</div>
@@ -63,7 +63,7 @@
 			<form:errors path="nip" element="span" class="merit-error"></form:errors>
 
 			<div class="input-row">
-				<form:input path="nip" type="text"
+				<form:input path="nip" id="nipField" type="text"
 					class="merit-input-sm" />
 				<span class="input-label"><s:message code="newCustomer.nip" /></span>
 			</div>

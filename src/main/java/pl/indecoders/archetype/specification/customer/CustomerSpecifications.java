@@ -13,7 +13,7 @@ import pl.indecoders.archetype.domain.account.Account;
 import pl.indecoders.archetype.domain.address.Address_;
 import pl.indecoders.archetype.domain.customer.Customer;
 import pl.indecoders.archetype.domain.customer.Customer_;
-import pl.indecoders.archetype.form.customer.NewCustomerForm;
+import pl.indecoders.archetype.form.customer.InvoiceNewCustomerForm;
 
 
 /**
@@ -41,7 +41,7 @@ public class CustomerSpecifications {
 		};
 	}
 	
-	public static Specification<Customer> hasGivenProperties(final Account owner, final NewCustomerForm form) {
+	public static Specification<Customer> hasGivenProperties(final Account owner, final InvoiceNewCustomerForm form) {
 		return new Specification<Customer>() {
 			@Override
 			public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

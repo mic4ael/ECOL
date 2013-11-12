@@ -28,7 +28,6 @@
 			</p>
 
 			<button name="finalize" class="btn btn-default login-button"><s:message code="registrationView.finalize" /></button>
-			<button class="btn btn-default login-button"><s:message code="registrationView.nextStep" /></button>
 
 		</form:form>
 

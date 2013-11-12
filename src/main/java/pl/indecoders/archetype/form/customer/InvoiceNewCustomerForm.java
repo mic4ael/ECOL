@@ -14,13 +14,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import pl.indecoders.archetype.form.address.AddressForm;
 import pl.indecoders.archetype.validation.annotation.RegularExpression;
-import pl.indecoders.archetype.validation.annotation.UniqueNip;
 
 /**
  * The Class NewCustomerForm.
  * @author Mateusz
  */
-public class NewCustomerForm {
+public class InvoiceNewCustomerForm {
 	
 	@NotEmpty
 	private String name;
@@ -30,7 +29,6 @@ public class NewCustomerForm {
 	
 	@RegularExpression(expression = NIP_REGEX, expressions = {})
 	@NotEmpty
-	@UniqueNip
 	private String nip;
 	
 	@RegularExpression(expression = EMAIL_REGEX, expressions = {})

@@ -10,7 +10,7 @@ import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import pl.indecoders.archetype.domain.payment.PaymentType;
-import pl.indecoders.archetype.form.customer.NewCustomerForm;
+import pl.indecoders.archetype.form.customer.InvoiceNewCustomerForm;
 
 /**
  * The Class InvoiceForm.
@@ -34,7 +34,7 @@ public class InvoiceForm {
 	private SellerForm seller;
 	
 	@Valid
-	private NewCustomerForm customer;
+	private InvoiceNewCustomerForm customer;
 	
 	private PaymentType paymentType;
 	
@@ -81,11 +81,11 @@ public class InvoiceForm {
 		this.seller = seller;
 	}
 
-	public NewCustomerForm getCustomer() {
+	public InvoiceNewCustomerForm getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(NewCustomerForm customer) {
+	public void setCustomer(InvoiceNewCustomerForm customer) {
 		this.customer = customer;
 	}
 
