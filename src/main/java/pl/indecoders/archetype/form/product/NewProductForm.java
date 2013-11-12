@@ -18,6 +18,7 @@ import org.springframework.format.annotation.NumberFormat;
 import pl.indecoders.archetype.domain.product.ProductGroup;
 import pl.indecoders.archetype.domain.product.Type;
 import pl.indecoders.archetype.domain.product.Unit;
+import pl.indecoders.archetype.validation.annotation.UniqueProductName;
 
 /**
  * The Class NewProductForm.
@@ -27,6 +28,7 @@ public class NewProductForm {
 	
 	@NotEmpty
 	@Size(max=255)
+	@UniqueProductName
 	private String productName;
 	
 	@Size(max=255)

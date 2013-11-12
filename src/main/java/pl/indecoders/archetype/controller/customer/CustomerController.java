@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.indecoders.archetype.domain.customer.Customer;
 import pl.indecoders.archetype.form.customer.InvoiceNewCustomerForm;
@@ -135,8 +136,11 @@ public class CustomerController {
 	/* Removes a customer */
 	
 	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/" + "delete", method = GET)
-	public String deleteCustomer(@PathVariable Long id) {
+	public String deleteCustomer(@PathVariable Long id, final RedirectAttributes model) {
 		customerService.setCustomerNotVisible(id);
+		
+		model.addFlashAttribute("message", true);
+		
 		return "redirect:" + CUSTOMERS_LIST_PATH + "/1";
 	}
 	
@@ -150,13 +154,14 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = CUSTOMERS_LIST_PATH + "/{id}/edit", method = POST)
-	public String processEditCustomerPage(@PathVariable Long id, @Valid @ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE) InvoiceNewCustomerForm form, final BindingResult results) {
-		if(results.hasErrors()) {
-			return EDIT_CUSTOMER_VIEW;
-		}
-		customerService.editCustomer(id, form);
-		return "redirect:" + CUSTOMERS_LIST_PATH + "/1";
-	}
+    public String processEditCustomerPage(@PathVariable Long id, @Valid @ModelAttribute(NEW_CUSTOMER_FORM_ATTRIBUTE) InvoiceNewCustomerForm form,
+                    final RedirectAttributes ra, final BindingResult results) {
+            if(results.hasErrors()) {
+                    return EDIT_CUSTOMER_VIEW;
+            }
+            customerService.editCustomer(id, form);
+            return "redirect:" + CUSTOMERS_LIST_PATH + "/1";
+    }
 	
 	/* Customers list in JSon */
 	
@@ -165,8 +170,6 @@ public class CustomerController {
 	public List<Customer> getCustomersJson(@RequestBody String pattern) {
 		return customerRepository.findAll(hasOwnerAndFiltered(userContext.getSignedUser(), pattern));
 	}
-	
-	/* Customer JSON by given id */
 	
 	@ResponseBody
 	@RequestMapping(value = GET_PROPER_CUSTOMER_JSON, method = POST)

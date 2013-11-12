@@ -1,11 +1,8 @@
 package pl.indecoders.archetype.form.customer;
 
 import static org.apache.commons.lang.builder.ToStringStyle.DEFAULT_STYLE;
-import static pl.indecoders.archetype.navigation.Navigator.EMAIL_REGEX;
 import static pl.indecoders.archetype.navigation.Navigator.NIP_REGEX;
-import static pl.indecoders.archetype.navigation.Navigator.PHONE_DOMESTIC_REGEX;
-import static pl.indecoders.archetype.navigation.Navigator.PHONE_MOBILE_INTERN_REGEX;
-import static pl.indecoders.archetype.navigation.Navigator.PHONE_MOBILE_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.EMAIL_REGEX;
 
 import javax.validation.Valid;
 
@@ -36,10 +33,7 @@ public class NewCustomerForm {
 	@RegularExpression(expression = EMAIL_REGEX, expressions = {})
 	private String email;
 	
-	@RegularExpression(expression = "", expressions = {PHONE_MOBILE_REGEX, PHONE_DOMESTIC_REGEX, PHONE_MOBILE_INTERN_REGEX})
 	private String contactPhone;
-
-	@RegularExpression(expression = "", expressions = {PHONE_MOBILE_REGEX, PHONE_DOMESTIC_REGEX, PHONE_MOBILE_INTERN_REGEX})
 	private String faxPhone;
 
 	public String getName() {

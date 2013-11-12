@@ -45,6 +45,7 @@
 				<span class="input-label"><s:message code="newProduct.unit" /></span>
 			</div>
 			
+			<form:errors path="group.name" element="span" class="merit-error"/>
 			<div class="input-row">
 				<form:select path="group.name" class="merit-input-sm">
 					<form:options items="${productAttributes.groups}"/>

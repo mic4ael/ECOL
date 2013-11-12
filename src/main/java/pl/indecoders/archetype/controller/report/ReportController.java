@@ -45,7 +45,7 @@ public class ReportController {
 	
 	@RequestMapping(value = SOLD_REPORT_PATH, method = POST)
 	public String processSoldReport(@Valid @ModelAttribute(SOLD_REPORT_ATTRIBUTE) final ReportForm form, final BindingResult result, final Model model) {
-		model.addAttribute(REPORT_ATTRIBUTE, invoiceService.prepareReportModel(form, userContext.getSignedUser()));
+		//model.addAttribute(REPORT_ATTRIBUTE, invoiceService.prepareReportModel(form, userContext.getSignedUser()));
 		return SOLD_REPORT_VIEW;
 	}
 }

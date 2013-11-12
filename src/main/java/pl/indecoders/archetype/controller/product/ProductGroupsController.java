@@ -77,6 +77,8 @@ public class ProductGroupsController {
 	public String showProductGroupsPage(final Model model, final HttpSession session, @PathVariable Integer page) {
 		model.addAttribute(GROUP_FORM_ATTRIBUTE, new NewProductGroupForm());
 		
+		session.removeAttribute(CURRENTLY_EDITED_GROUP_ID);
+		
 		if (session.getAttribute(PRODUCT_GROUP_SORT_DIR) == null && session.getAttribute(PRODUCT_GROUP_SORT_FIELD) == null) {
 			model.addAttribute(GROUP_LIST_ATTRIBUTE, productGroupService.getProductGroupsPerPage(userContext.getSignedUser(), page - 1, RESULTS_ON_PAGE));
 		} else {

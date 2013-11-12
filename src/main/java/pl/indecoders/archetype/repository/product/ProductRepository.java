@@ -24,6 +24,8 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 	public List<Product> findByGroupAndIsVisible(final ProductGroup group, final boolean isVisible);
 	public List<Product> findByOwnerAndIsVisible(Pageable req, Account owner, boolean isVisible);
 	
+	public Product findByOwnerAndProductNameAndIsVisible(final Account owner, final String name, final boolean isVisible);
+	
 	@Query("select count(p) from Product p where p.owner = ?1")
 	public Long countByOwner(final Account owner);
 	

@@ -20,6 +20,7 @@ public interface ProductGroupRepository extends JpaRepository<ProductGroup, Long
 	public List<ProductGroup> findByOwnerAndIsActive(final Account owner, boolean isActive);
 	public List<ProductGroup> findByOwnerAndIsActive(final Pageable req, final Account owner, final boolean isActive);
 	public ProductGroup findByName(final String name);
+	public ProductGroup findByNameAndIsActive(final String groupName, final boolean isActive);
 	
 	@Query("select count(p) from ProductGroup p where p.owner = ?1 and p.isActive = ?2")
 	public Long countByOwnerAndIsActive(final Account owner, final boolean isActive);

@@ -69,7 +69,7 @@ public class ProductService {
 	
 	public void persistProduct(NewProductForm form, final Account owner) {
 		Product productToPersist = new Product();
-		ProductGroup group = groupRepository.findByName(form.getGroup().getName());
+		ProductGroup group = groupRepository.findByNameAndIsActive(form.getGroup().getName(), true);
 		
 		productToPersist.setOwner(owner);
 		productToPersist.setBasePrice(form.getBasePrice());

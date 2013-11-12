@@ -1,12 +1,8 @@
 package pl.indecoders.archetype.form.invoice;
 
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
-import static pl.indecoders.archetype.navigation.Navigator.BANK_REGEX;
 import static pl.indecoders.archetype.navigation.Navigator.EMAIL_REGEX;
 import static pl.indecoders.archetype.navigation.Navigator.NIP_REGEX;
-import static pl.indecoders.archetype.navigation.Navigator.PHONE_DOMESTIC_REGEX;
-import static pl.indecoders.archetype.navigation.Navigator.PHONE_MOBILE_INTERN_REGEX;
-import static pl.indecoders.archetype.navigation.Navigator.PHONE_MOBILE_REGEX;
 
 import javax.validation.Valid;
 
@@ -34,20 +30,15 @@ public class SellerForm {
 	private String nip;
 
 	@NotEmpty
-	@RegularExpression(expression = "", expressions = {PHONE_MOBILE_REGEX, PHONE_DOMESTIC_REGEX, PHONE_MOBILE_INTERN_REGEX})
 	private String contactPhone;
-	
-	@RegularExpression(expression = "", expressions = {PHONE_MOBILE_REGEX, PHONE_DOMESTIC_REGEX, PHONE_MOBILE_INTERN_REGEX})
 	private String faxPhone;
 
 	@NotEmpty
 	private String bankName;
 
 	@NotEmpty
-	@RegularExpression(expression = BANK_REGEX, expressions = {})
 	private String bankNumber;
 	
-	@RegularExpression(expression = EMAIL_REGEX, expressions = {})
 	private String email;
 	
 	public String getName() {

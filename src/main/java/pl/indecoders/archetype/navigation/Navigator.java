@@ -41,13 +41,14 @@ public class Navigator {
 	
 	public static final String INVOICE_DETAILS_PATH = "/invoice-details";
 	public static final String SOLD_REPORT_PATH = "/sold-report";
+	public static final String PDF_GENERATE_PATH = "/generate-pdf";
 	
 	/* Views */
 
 	public static final String HOME_VIEW = "home";
 	public static final String LOGIN_VIEW = "login";
 	public static final String REGISTRATION_VIEW = "registration";
-	
+	public static final String PDF_VIEW = "InvoicePdfGenerator";
 	public static final String NEW_PRODUCT_VIEW = "newProduct";
 	public static final String NEW_CUSTOMER_VIEW = "newCustomer";
 	public static final String CUSTOMERS_LIST_VIEW = "customersList";
@@ -84,6 +85,7 @@ public class Navigator {
 	public static final String NEW_PRODUCT_REDIRECT = "redirect:/new-product";
 	public static final String NEW_PRODUCT_FORM_ATTRIBUTE = "newProduct";
 	public static final String NEW_PRODUCT_ATTRIBUTES = "productAttributes";
+	public static final String CURRENTLY_EDITED_PRODUCT_ID = "currentlyEditedProductId";
 	
 	public static final String NEW_CUSTOMER_FORM_ATTRIBUTE = "newCustomer";
 	public static final String CUSTOMER_COUNT_ATTRIBUTE = "customersCount";

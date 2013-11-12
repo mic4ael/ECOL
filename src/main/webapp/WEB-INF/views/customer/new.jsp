@@ -6,16 +6,15 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <div class="page_view">
-
+	<c:if test="${success != null}">
+		<div id="message" style="text-align: center; postion: absolute; top: 100px; margin: 20px auto;" class="alert alert-success">
+			${success}
+		</div>
+	</c:if>
+	
 	<p>
 		<strong><s:message code="newCustomer.helloSlogan" arguments="${customersCount}" /></strong>
 	</p>
-
-	<c:if test="${success != null}">
-		<p>
-			<strong style="color: #37A10D;">${success}</strong>
-		</p>
-	</c:if>
 
 	<form:form modelAttribute="newCustomer" method="post">
 
@@ -99,5 +98,8 @@
 	</form:form>
 
 <script src="<c:url value="/resources/js/newCustomer.js" />"></script>
+<script type="text/javascript">
+	$('#message').fadeOut(4000);
+</script>
 
 </div>
