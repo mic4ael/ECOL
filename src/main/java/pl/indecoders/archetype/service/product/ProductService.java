@@ -63,8 +63,22 @@ public class ProductService {
 		editForm.setProductUnit(productToEdit.getProductUnit());
 		editForm.setTaxAmount(productToEdit.getTaxAmount());
 		
-		
 		return editForm;
+	}
+	
+	public void editProduct(final NewProductForm form, final Long productId) {
+		Product productToEdit = productRepository.findOne(productId);
+		ProductGroup group = groupRepository.findByNameAndIsActive(form.getGroup().getName(), true);
+		
+		productToEdit.setBasePrice(form.getBasePrice());
+		productToEdit.setGroup(group);
+		productToEdit.setProductName(form.getProductName());
+		productToEdit.setProductSpecification(form.getProductSpecification());
+		productToEdit.setProductType(form.getProductType());
+		productToEdit.setProductUnit(form.getProductUnit());
+		productToEdit.setTaxAmount(form.getTaxAmount());
+		
+		productRepository.save(productToEdit);
 	}
 	
 	public void persistProduct(NewProductForm form, final Account owner) {

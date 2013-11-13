@@ -12,4 +12,7 @@
 	<definition name="productGroups" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/product/groups.jsp"></put-attribute>
 	</definition>
+	<definition name="editProduct" extends="default">
+		<put-attribute name="body" value="/WEB-INF/views/product/edit.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

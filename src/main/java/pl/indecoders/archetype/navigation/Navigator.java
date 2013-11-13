@@ -55,7 +55,7 @@ public class Navigator {
 	public static final String PRODUCTS_LIST_VIEW = "productsList";
 	public static final String PRODUCT_GROUPS_VIEW = "productGroups";
 	public static final String EDIT_CUSTOMER_VIEW = "editCustomer";
-	
+	public static final String EDIT_PRODUCT_VIEW = "editProduct";
 	public static final String NEW_INVOICE_VIEW = "newInvoice";
 	public static final String NEW_INVOICE_PRODUCTS_VIEW = "newInvoiceStep2";
 	public static final String INVOICES_LIST_VIEW = "invoicesList";
@@ -84,6 +84,7 @@ public class Navigator {
 	
 	public static final String NEW_PRODUCT_REDIRECT = "redirect:/new-product";
 	public static final String NEW_PRODUCT_FORM_ATTRIBUTE = "newProduct";
+	public static final String EDIT_PRODUCT_FORM_ATTRIBUTE = "editProductForm";
 	public static final String NEW_PRODUCT_ATTRIBUTES = "productAttributes";
 	public static final String CURRENTLY_EDITED_PRODUCT_ID = "currentlyEditedProductId";
 	

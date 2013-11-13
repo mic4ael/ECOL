@@ -17,6 +17,8 @@ import static pl.indecoders.archetype.navigation.Navigator.PRODUCTS_LIST_VIEW;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_COUNT_ATTRIBUTE;
 import static pl.indecoders.archetype.navigation.Navigator.PRODUCT_PAGES_COUNT;
 import static pl.indecoders.archetype.navigation.Navigator.REMOVE_PRODUCT_PATH;
+import static pl.indecoders.archetype.navigation.Navigator.EDIT_PRODUCT_VIEW;
+import static pl.indecoders.archetype.navigation.Navigator.EDIT_PRODUCT_FORM_ATTRIBUTE;
 
 import java.util.List;
 import java.util.Locale;
@@ -126,19 +128,22 @@ public class ProductController {
 		
 		session.setAttribute(CURRENTLY_EDITED_PRODUCT_ID, id);
 		editForm = productService.prepareEditForm(id);
-		model.addAttribute(NEW_PRODUCT_FORM_ATTRIBUTE, editForm);
+		model.addAttribute(EDIT_PRODUCT_FORM_ATTRIBUTE, editForm);
 		
-		return NEW_PRODUCT_VIEW;
+		return EDIT_PRODUCT_VIEW;
 	}
 	
 	@RequestMapping(value = EDIT_PRODUCT_PATH + "/{id}/edit", method = POST)
-	public String editProductPost(final @PathVariable Long id, @Valid @ModelAttribute(NEW_PRODUCT_FORM_ATTRIBUTE) NewProductForm form, 
-			final BindingResult result) {
+	public String editProductPost(final @PathVariable Long id, @Valid @ModelAttribute(EDIT_PRODUCT_FORM_ATTRIBUTE) NewProductForm form, 
+			final BindingResult result, final RedirectAttributes ra) {
 		
 		if (result.hasErrors())
-			return NEW_PRODUCT_VIEW;
+			return EDIT_PRODUCT_VIEW;
 		
-		return NEW_PRODUCT_VIEW;
+		productService.editProduct(form, id);
+		ra.addFlashAttribute("message", true);
+		
+		return "redirect:" + PRODUCTS_LIST_PATH + "/1";
 	}
 	
 	/* Remove */
