@@ -1,6 +1,7 @@
 package pl.indecoders.archetype.form.address;
 
 import static pl.indecoders.archetype.navigation.Navigator.POSTAL_CODE_REGEX;
+import static pl.indecoders.archetype.navigation.Navigator.PHONE_DOMESTIC_REGEX;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,6 +20,7 @@ public class AddressForm {
 	private String street;
 	
 	@NotEmpty
+	@RegularExpression(expression = "", expressions = {PHONE_DOMESTIC_REGEX})
 	private String homeNumber;
 	
 	@NotEmpty

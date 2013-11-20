@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -49,7 +50,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = HOME_PATH, method = POST)
-	public String updatePersonalInformations(@Valid @ModelAttribute(PERSONAL_INFORMATIONS_FORM) PersonalInformationForm form, final Model model, final Principal principal) {
+	public String updatePersonalInformations(@Valid @ModelAttribute(PERSONAL_INFORMATIONS_FORM) PersonalInformationForm form,
+			final BindingResult results, final Model model, final Principal principal) {
+		
+		if(results.hasErrors())
+			return HOME_VIEW;
+		
 		profileService.processPersonalInformationsForm(form, userContext.getSignedUser(principal));
 		model.addAttribute(PERSONAL_INFORMATIONS_FORM, profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal)));
 		model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));

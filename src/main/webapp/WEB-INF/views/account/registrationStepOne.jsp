@@ -15,10 +15,12 @@
 
 		<form:form modelAttribute="registerAccount">
 			<p>
+				<form:errors path="email" element="span" class="merrit-error"></form:errors>
 				<form:input path="email" id="emailInput" class="standard-input" type="text"
 					placeholder="${email}" />
 			</p>
 			<p>
+				<form:errors path="password" element="span" class="merrit-error"></form:errors>
 				<form:input path="password" class="standard-input" type="password"
 					placeholder="${password}" />
 			</p>

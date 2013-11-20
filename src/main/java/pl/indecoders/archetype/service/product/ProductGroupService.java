@@ -40,11 +40,7 @@ public class ProductGroupService {
 	private void removeProducts(ProductGroup group) {
 		List<Product> productsToRemove = productRepository.findByGroupAndIsVisible(group, true);
 		
-		for(Product p : productsToRemove) {
-			p.setIsVisible(false);
-		}
-			
-		productRepository.save(productsToRemove);
+		productRepository.delete(productsToRemove);
 	}
 	
 	public void removeProductGroup(final Long id) {
@@ -52,8 +48,7 @@ public class ProductGroupService {
 		
 		removeProducts(groupToRemove);
 		
-		groupToRemove.setIsActive(false);
-		productGroupRepository.save(groupToRemove);
+		productGroupRepository.delete(groupToRemove);
 	}
 	
 	public List<ProductGroup> getProductGroupsPerPage(final Account owner, final int pageIndex, final int itemsPerPage) {

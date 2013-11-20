@@ -33,14 +33,16 @@ public class RegularExpressionValidator implements ConstraintValidator<RegularEx
 			return true;
 		}
 		
-		if(expressions.length == 0 || expressions == null) {
+		if(expressions == null || expressions.length == 0) {
 			return value.matches(expression);
 		} else {
 			List<Boolean> statuses = new ArrayList<Boolean>();
+			
 			for(String exp : expressions) {
 				statuses.add(value.matches(exp));
 			}
-			return statuses.contains(true) ? true : false;
+			
+			return statuses.contains(true);
 		}
 	}
 }

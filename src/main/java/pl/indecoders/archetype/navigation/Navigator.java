@@ -127,9 +127,9 @@ public class Navigator {
 	public static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	public static final String NIP_REGEX = "^[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$";
 	public static final String REGON_REGEX = "^[0-9]{3}-[0-9]{3}-[0-9]{3}$";
-	public static final String PHONE_MOBILE_INTERN_REGEX = "^[0-9]{2} [0-9]{3} [0-9]{3} [0-9]{3}$";
-	public static final String PHONE_MOBILE_REGEX = "^[0-9]{3} [0-9]{3} [0-9]{3}$";
-	public static final String PHONE_DOMESTIC_REGEX = "^[0-9]{2} [0-9]{3} [0-9]{2} [0-9]{2}$";
+	public static final String PHONE_MOBILE_INTERN_REGEX = "^[0-9]{2}\\s*[0-9]{3}\\s*[0-9]{3}\\s*[0-9]{3}$";
+	public static final String PHONE_MOBILE_REGEX = "^[0-9]{3}\\s*[0-9]{3}\\s*[0-9]{3}$";
+	public static final String PHONE_DOMESTIC_REGEX = "^[0-9]{2}\\s*[0-9]{3}\\s*[0-9]{2}\\s*[0-9]{2}$";
 	public static final String POSTAL_CODE_REGEX = "^[0-9]{2}-[0-9]{3}$";
-	public static final String BANK_REGEX = "^[0-9]{2} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$";
+	public static final String BANK_REGEX = "^[0-9]{2}\\s*[0-9]{4}\\s*[0-9]{4}\\s*[0-9]{4}\\s*[0-9]{4}\\s*[0-9]{4}\\s*[0-9]{4}$";
 }
