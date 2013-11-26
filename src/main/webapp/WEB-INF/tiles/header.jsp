@@ -26,7 +26,6 @@
 					
 					<security:authorize access="isAuthenticated()">
 					
-						<li><a href="#"><s:message code="navbar.account.edit" /></a></li>
 						<li><a href='<s:url value="/logout"/>'><s:message code="navbar.account.logout" /></a></li>
 					
 					</security:authorize>

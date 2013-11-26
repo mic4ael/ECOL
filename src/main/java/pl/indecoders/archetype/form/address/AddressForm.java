@@ -20,7 +20,6 @@ public class AddressForm {
 	private String street;
 	
 	@NotEmpty
-	@RegularExpression(expression = "", expressions = {PHONE_DOMESTIC_REGEX})
 	private String homeNumber;
 	
 	@NotEmpty

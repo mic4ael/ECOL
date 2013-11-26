@@ -2,6 +2,7 @@ package pl.indecoders.archetype.service.invoice;
 
 import static pl.indecoders.archetype.domain.payment.DiscountType.MONETISED;
 import static pl.indecoders.archetype.domain.payment.DiscountType.PERCENTAGE;
+import static pl.indecoders.archetype.specification.invoice.InvoiceSpecifications.hasOwnerAndInterval;
 import static pl.indecoders.archetype.utils.SortTranslationUtils.translateDirection;
 
 import java.math.BigDecimal;
@@ -25,6 +26,8 @@ import pl.indecoders.archetype.domain.product.ProductRow;
 import pl.indecoders.archetype.form.address.AddressForm;
 import pl.indecoders.archetype.form.invoice.InvoiceForm;
 import pl.indecoders.archetype.form.invoice.ProductRowForm;
+import pl.indecoders.archetype.form.report.ReportForm;
+import pl.indecoders.archetype.form.report.ReportModel;
 import pl.indecoders.archetype.repository.invoice.InvoiceRepository;
 import pl.indecoders.archetype.repository.product.ProductRepository;
 import pl.indecoders.archetype.service.customer.CustomerService;
@@ -161,5 +164,18 @@ public class InvoiceService {
 	public List<Invoice> getPagedInvoices(final Account owner, final Integer pageIndex, final Integer pageLimit, final String sortProperty, final String sortDirection) {
 		final PageRequest request = new PageRequest(pageIndex, pageLimit, translateDirection(sortDirection), sortProperty);
 		return invoiceRepository.findByOwner(owner, request);
+	}
+
+	/* Report */
+	
+	public ReportModel prepareReportModel(ReportForm form, Account signedUser) {
+		List<Invoice> invoices = invoiceRepository.findAll(hasOwnerAndInterval(signedUser, form.getDateFrom(), form.getDateTo()));
+		BigDecimal generalPrice = BigDecimal.ZERO;
+		BigDecimal generalTax = BigDecimal.ZERO;
+		for(Invoice invoice : invoices) {
+			generalPrice = generalPrice.add(invoice.getGeneralAmount());
+			generalTax = generalTax.add(invoice.getTaxAmount());
+		}
+		return new ReportModel(generalPrice, generalTax);
 	}
 }

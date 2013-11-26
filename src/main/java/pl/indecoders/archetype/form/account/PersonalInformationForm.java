@@ -24,7 +24,6 @@ public class PersonalInformationForm {
 	@RegularExpression(expression = POSTAL_CODE_REGEX, expressions = {})
 	private String postal;
 	
-	@RegularExpression(expression = PHONE_DOMESTIC_REGEX, expressions = {})
 	private String homeNumber;
 	
 	@RegularExpression(expression = NIP_REGEX, expressions = {})
