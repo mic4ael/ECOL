@@ -119,11 +119,17 @@ public class NewInvoiceController {
 		List<ProductRowForm> products = (List<ProductRowForm>) session.getAttribute(SESSION_STORED_PRODUCTS);
 		if (products == null) {
 			List<ProductRowForm> newProducts = new ArrayList<ProductRowForm>();
-			newProducts.add(form);
+			
+			if (form.getId() != null)
+				newProducts.add(form);
+			
 			session.setAttribute(SESSION_STORED_PRODUCTS, newProducts);
 			return;
 		}
-		products.add(form);
+		
+		if (form.getId() != null)
+			products.add(form);
+		
 		session.setAttribute(SESSION_STORED_PRODUCTS, products);
 	}
 }
