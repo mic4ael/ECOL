@@ -8,14 +8,11 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import pl.indecoders.archetype.validation.annotation.FieldMatch;
 import pl.indecoders.archetype.validation.annotation.RegularExpression;
 import pl.indecoders.archetype.validation.annotation.UniqueEmail;
 
-/**
- * The Class SignupForm.
- * 
- * @author Mateusz
- */
+@FieldMatch(firstField="password", secondField="repeatedPassword")
 public class RegisterAccountForm {
 
 	@RegularExpression(expression = EMAIL_REGEX, expressions = {})

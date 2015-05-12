@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 
 @Configuration
+@EnableAspectJAutoProxy
 @ComponentScan(basePackages = { "pl.indecoders.archetype" })
 public class RootConfig {
 	

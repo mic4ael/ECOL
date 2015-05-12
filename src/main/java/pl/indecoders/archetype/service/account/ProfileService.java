@@ -11,10 +11,6 @@ import pl.indecoders.archetype.form.account.PersonalInformationForm;
 import pl.indecoders.archetype.form.invoice.SellerForm;
 import pl.indecoders.archetype.repository.accout.AccountRepository;
 
-/**
- * The Class ProfileService.
- * @author Mateusz
- */
 @Service
 public class ProfileService {
 
@@ -24,7 +20,7 @@ public class ProfileService {
 	public PersonalInformationForm preparePersonalInformationsForm(Account account) {
 		Profile profile = null;
 		
-		if(account.getProfile() != null) {
+		if (account.getProfile() != null) {
 			profile = account.getProfile();
 		} else {
 			profile = new Profile();
@@ -47,13 +43,14 @@ public class ProfileService {
 	}
 
 	private void prepareAddressInformations(Profile profile, PersonalInformationForm form) {
-		if(profile.getAddress() != null) {
+		if (profile.getAddress() != null) {
 			form.setCity(profile.getAddress().getCity() != null ? profile.getAddress().getCity() : "");
 			form.setStreet(profile.getAddress().getStreet() != null ? profile.getAddress().getStreet() : "");
 			form.setPostal(profile.getAddress().getPostalCode() != null ? profile.getAddress().getPostalCode() : "");
 			form.setHomeNumber(profile.getAddress().getHomeNumber() != null ? profile.getAddress().getHomeNumber() : "");
 			return;
 		}
+		
 		form.setCity("");
 		form.setStreet("");
 		form.setPostal("");
@@ -61,11 +58,12 @@ public class ProfileService {
 	}
 	
 	private void prepareBankInformations(Profile profile, PersonalInformationForm form) {
-		if(profile.getBankInformations() != null) {
+		if (profile.getBankInformations() != null) {
 			form.setBankName(profile.getBankInformations().getBankName() != null ? profile.getBankInformations().getBankName() : "");
 			form.setBankNumber(profile.getBankInformations().getBankAccountNumber() != null ? profile.getBankInformations().getBankAccountNumber() : "");
 			return;
 		}
+		
 		form.setBankName("");
 		form.setBankNumber("");
 	}
@@ -79,11 +77,11 @@ public class ProfileService {
 		profile.setFaxPhone(form.getFaxPhone() != null ? form.getFaxPhone() : null);
 		profile.setEmail(form.getEmail() != null ? form.getEmail() : null);
 		
-		if(form.getCity() != null || form.getStreet() != null || form.getHomeNumber() != null || form.getPostal() != null) {
+		if (form.getCity() != null || form.getStreet() != null || form.getHomeNumber() != null || form.getPostal() != null) {
 			processAddressInformations(profile, form);
 		}
 		
-		if(form.getBankName() != null || form.getBankNumber() != null) {
+		if (form.getBankName() != null || form.getBankNumber() != null) {
 			processBankInformations(profile, form);
 		}
 		

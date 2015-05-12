@@ -24,6 +24,11 @@ public class SecurityUserContext {
 	}
 	
 	public Account getSignedUser() {
-		return accountRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+		Principal principal = SecurityContextHolder.getContext().getAuthentication();
+		if (principal != null) {
+			return accountRepository.findByEmail(principal.getName());
+		}
+		
+		return null;
 	}
 }

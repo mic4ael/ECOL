@@ -14,6 +14,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +26,6 @@ import pl.indecoders.archetype.form.account.PersonalInformationForm;
 import pl.indecoders.archetype.security.SecurityUserContext;
 import pl.indecoders.archetype.service.account.ProfileService;
 
-/**
- * The Class HomeController
- * @author Mateusz
- */
 @Controller
 public class HomeController {
 
@@ -38,14 +35,21 @@ public class HomeController {
 	@Autowired
 	private SecurityUserContext userContext;
 	
+	@Autowired
+	private Logger log;
+	
 	@RequestMapping(value = HOME_PATH, method = GET)
 	public String index(final Principal principal, final Model model, final HttpSession session) {
-		if(principal != null) {
-			model.addAttribute(PERSONAL_INFORMATIONS_FORM, profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal)));
-			model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));
+		if (principal != null) {
+			model.addAttribute(
+				PERSONAL_INFORMATIONS_FORM, 
+				profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal))
+			);
 			
+			model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));
 			return HOME_VIEW;
 		}
+
 		return LOGIN_VIEW;
 	}
 	
@@ -53,12 +57,13 @@ public class HomeController {
 	public String updatePersonalInformations(@Valid @ModelAttribute(PERSONAL_INFORMATIONS_FORM) PersonalInformationForm form,
 			final BindingResult results, final Model model, final Principal principal) {
 		
-		if(results.hasErrors())
+		if (results.hasErrors())
 			return HOME_VIEW;
 		
 		profileService.processPersonalInformationsForm(form, userContext.getSignedUser(principal));
 		model.addAttribute(PERSONAL_INFORMATIONS_FORM, profileService.preparePersonalInformationsForm(userContext.getSignedUser(principal)));
 		model.addAttribute(CURRENTLY_SIGNED, userContext.getSignedUser(principal));
+		
 		return MAIN_REDIRECT;
 	}
 }

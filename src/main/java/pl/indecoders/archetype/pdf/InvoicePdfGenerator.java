@@ -115,7 +115,8 @@ public class InvoicePdfGenerator extends AbstractPdfView {
 		tab.setWidthPercentage(40);
 		tab.setHorizontalAlignment(PdfPTable.ALIGN_RIGHT);
 		tab.addCell(createTableHeader("Seller"));
-		tab.addCell(prepareNoBorderCell(null, inv.getDifferentSeller().getName(), PdfPCell.ALIGN_LEFT));
+		tab.addCell(prepareNoBorderCell(null, inv.getDifferentSeller().getName().split(" ")[0], PdfPCell.ALIGN_LEFT));
+		tab.addCell(prepareNoBorderCell(null, inv.getDifferentSeller().getName().split(" ")[1], PdfPCell.ALIGN_LEFT));
 		tab.addCell(prepareNoBorderCell(null, inv.getDifferentSeller().getAddress().getStreet() + ", " + 
 				inv.getDifferentSeller().getAddress().getHomeNumber(), PdfPCell.ALIGN_LEFT));
 		tab.addCell(prepareNoBorderCell(null, inv.getDifferentSeller().getAddress().getCity() + ", " + 
@@ -144,6 +145,7 @@ public class InvoicePdfGenerator extends AbstractPdfView {
 		tab.setHorizontalAlignment(PdfPTable.ALIGN_LEFT);
 		tab.addCell(createTableHeader("Customer"));
 		tab.addCell(prepareNoBorderCell(null, inv.getCustomer().getName(), PdfPCell.ALIGN_LEFT));
+		tab.addCell(prepareNoBorderCell(null, "", PdfPCell.ALIGN_LEFT));
 		tab.addCell(prepareNoBorderCell(null, inv.getCustomer().getAddress().getStreet() + ", " + 
 				inv.getCustomer().getAddress().getHomeNumber(), PdfPCell.ALIGN_LEFT));
 		tab.addCell(prepareNoBorderCell(null, inv.getCustomer().getAddress().getCity() + ", " + 

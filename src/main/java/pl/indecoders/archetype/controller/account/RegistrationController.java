@@ -19,15 +19,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.indecoders.archetype.domain.account.Account;
+import pl.indecoders.archetype.events.MailEventPublisher;
 import pl.indecoders.archetype.form.account.RegisterAccountForm;
 import pl.indecoders.archetype.repository.accout.AccountRepository;
 import pl.indecoders.archetype.service.account.UserService;
 
-/**
- * The Class RegistrationController.
- * 
- * @author Mateusz
- */
 @Controller
 public class RegistrationController {
 
@@ -36,21 +32,27 @@ public class RegistrationController {
 	
 	@Autowired
 	private AccountRepository accountRepository;
-
+	
+	@Autowired
+	private MailEventPublisher mailEventPublisher;
+	
+	
 	@RequestMapping(value = REGISTRATION_PATH, method = GET)
 	public String showRegistrationPage(Model model) {
 		model.addAttribute(REGISTER_ACCOUNT_FORM_ATTRIBUTE, new RegisterAccountForm());
 		return REGISTRATION_VIEW;
 	}
 
-	/* FIXME Deploy second step of registration */
-
 	@RequestMapping(value = REGISTRATION_PATH, method = POST)
-	public String processRegistrationPage(@Valid @ModelAttribute(REGISTER_ACCOUNT_FORM_ATTRIBUTE) RegisterAccountForm form, BindingResult result,
-			HttpServletRequest request) {
+	public String processRegistrationPage(@Valid 
+										  @ModelAttribute(REGISTER_ACCOUNT_FORM_ATTRIBUTE) RegisterAccountForm form,
+										  BindingResult result,
+										  HttpServletRequest request) {
+		
 		if (result.hasErrors()) {
 			return REGISTRATION_VIEW;
 		}
+		
 		return containsFinalizeKey(request) ? finalizeRegistration(form) : MAIN_REDIRECT;
 	}
 
@@ -58,12 +60,15 @@ public class RegistrationController {
 		if (request.getParameterMap().containsKey(FINALIZE_REGISTRATION_KEY)) {
 			return true;
 		}
+		
 		return false;
 	}
 
 	private String finalizeRegistration(RegisterAccountForm form) {
 		Account registeredAccount = userService.registerNewAccount(form);
 		userService.signin(registeredAccount);
+		mailEventPublisher.publish(registeredAccount);
+		
 		return MAIN_REDIRECT;
 	}
 }

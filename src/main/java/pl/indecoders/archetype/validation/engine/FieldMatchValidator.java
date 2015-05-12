@@ -5,14 +5,10 @@ import static org.apache.commons.beanutils.BeanUtils.getProperty;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import pl.indecoders.archetype.form.account.RegisterAccountForm;
 import pl.indecoders.archetype.validation.annotation.FieldMatch;
 
-/**
- * The Class FieldMatchValidator.
- * 
- * @author Mateusz
- */
-public class FieldMatchValidator implements ConstraintValidator<FieldMatch, String> {
+public class FieldMatchValidator implements ConstraintValidator<FieldMatch, RegisterAccountForm> {
 
 	private String fieldFirst;
 	private String fieldSecond;
@@ -24,16 +20,17 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Stri
 	}
 
 	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
+	public boolean isValid(RegisterAccountForm value, ConstraintValidatorContext context) {
 		try {
-			final Object firstField = getProperty(value, "fieldFirst");
-			final Object secondField = getProperty(value, "fieldSecond");
+			final String firstField = getProperty(value, this.fieldFirst);
+			final String secondField = getProperty(value, this.fieldSecond);
 
-			if ((String.valueOf(firstField).equals(String.valueOf(secondField)) && firstField != null && secondField != null)) {
+			if (firstField != null && secondField != null && firstField.equals(secondField)) {
 				return true;
 			}
-		} catch (final Exception ignore) {
-		}
+			
+		} catch (final Exception ignore) {}
+		
 		return false;
 	}
 }

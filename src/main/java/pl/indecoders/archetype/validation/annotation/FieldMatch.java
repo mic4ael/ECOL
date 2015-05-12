@@ -13,12 +13,6 @@ import javax.validation.Payload;
 
 import pl.indecoders.archetype.validation.engine.FieldMatchValidator;
 
-/**
- * The Class FieldMatch.
- * 
- * @author Mateusz
- */
-
 @Target({ TYPE, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 @Constraint(validatedBy = FieldMatchValidator.class)

@@ -40,6 +40,7 @@ public class UserService implements UserDetailsService {
 		if (account == null) {
 			throw new UsernameNotFoundException(USERNAME_NOT_FOUND);
 		}
+		
 		return createUser(account);
 	}
 

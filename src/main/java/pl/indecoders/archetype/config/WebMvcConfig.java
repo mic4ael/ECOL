@@ -1,11 +1,15 @@
 package pl.indecoders.archetype.config;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +19,8 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.core.MethodParameter;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.Validator;
@@ -46,6 +52,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	
 	private static final String RESOURCES_HANDLER = "/resources/";
 	private static final String RESOURCES_LOCATION = RESOURCES_HANDLER + "**";
+	
+	private static final String MAIL_PROPS = "mail.properties";
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -96,6 +104,28 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		TilesConfigurer configurer = new TilesConfigurer();
 		configurer.setDefinitions(new String[] {TILES, VIEWS});
 		return configurer;
+	}
+	
+	@Bean
+	public Logger applicationLogger() {
+		return LoggerFactory.getLogger("pl.indecoders.archetype");
+	}
+	
+	@Bean
+	JavaMailSender mailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		Properties mailProps = new Properties();
+		
+		try {
+			mailProps.load(this.getClass().getClassLoader().getResourceAsStream(MAIL_PROPS));
+			mailSender.setJavaMailProperties(mailProps);
+			mailSender.setUsername(mailProps.getProperty("mail.user"));
+			mailSender.setPassword(mailProps.getProperty("mail.password"));
+		} catch (IOException e) {
+			return null;
+		}
+		
+		return mailSender;
 	}
 	
 	@Override

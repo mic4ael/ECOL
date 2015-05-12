@@ -29,7 +29,7 @@ public class RegularExpressionValidator implements ConstraintValidator<RegularEx
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 
-		if(value.isEmpty()) {
+		if(value == null || value.isEmpty()) {
 			return true;
 		}
 		
