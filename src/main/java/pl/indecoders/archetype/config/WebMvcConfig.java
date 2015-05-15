@@ -122,6 +122,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 			mailSender.setUsername(mailProps.getProperty("mail.user"));
 			mailSender.setPassword(mailProps.getProperty("mail.password"));
 		} catch (IOException e) {
+			System.out.println(e);
 			return null;
 		}
 		

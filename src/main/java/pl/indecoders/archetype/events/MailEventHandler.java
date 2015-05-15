@@ -32,6 +32,7 @@ public class MailEventHandler implements ApplicationListener<MailEvent> {
 		try {
 			sender.send(msg);
 		} catch (MailException ex) {
+			System.out.println(ex);
 			logger.debug("Can't send mail to " + accountRegistered.getEmail());
 			logger.debug("Reason: " + ex.getMessage());
 		}

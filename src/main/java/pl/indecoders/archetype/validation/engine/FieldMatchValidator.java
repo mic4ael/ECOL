@@ -29,7 +29,9 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Regi
 				return true;
 			}
 			
-		} catch (final Exception ignore) {}
+		} catch (final Exception ignore) {
+			System.out.println(ignore);
+		}
 		
 		return false;
 	}

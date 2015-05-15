@@ -22,7 +22,9 @@ public class ActivityAspect {
 	SecurityUserContext ctx;
 	
 	@Pointcut("within(pl.indecoders.archetype.controller..*)")
-	public void userActivities() {}
+	public void userActivities() {
+		// POINTCUT
+	}
 	
 	@Before("userActivities()")
 	public void logUserActivity(JoinPoint jp) {
